@@ -70,7 +70,7 @@
   /* ── mark ──────────────────────────────────────────────────── */
   .mark{
     display:flex;
-    align-items:center;
+    align-items:baseline;                      /* svg baseline is its bottom edge, so text sits on the bars' floor */
     gap:clamp(16px,1.9vw,29px);
     text-decoration:none;
     color:inherit;
@@ -84,6 +84,7 @@
     font-weight:500;
     letter-spacing:.34em;
     text-indent:.34em;
+    line-height:1;
     color:var(--cream);
     white-space:nowrap;
   }
