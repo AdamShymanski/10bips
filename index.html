@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>10BIPS</title>
-<meta name="description" content="10BIPS — quantifying event contracts.">
+<title>10bips</title>
+<meta name="description" content="10bips — quantifying event contracts.">
 <meta name="theme-color" content="#0a0a0b">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0a0b'/%3E%3Cg fill='%23f4f1ea'%3E%3Crect x='3' y='12' width='2.5' height='14'/%3E%3Crect x='9' y='12' width='2.5' height='14'/%3E%3Crect x='15' y='12' width='2.5' height='14'/%3E%3Crect x='21' y='12' width='2.5' height='14'/%3E%3C/g%3E%3Crect x='27' y='6' width='3' height='20' fill='%238A2B18'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -70,13 +70,21 @@
   /* ── mark ──────────────────────────────────────────────────── */
   .mark{
     display:flex;
-    align-items:baseline;                      /* svg baseline is its bottom edge, so text sits on the bars' floor */
+    align-items:baseline;                      /* bars have no text, so their baseline is their bottom edge and the text sits on the bars' floor */
     gap:clamp(16px,1.9vw,29px);
     text-decoration:none;
     color:inherit;
     width:max-content;
   }
-  .mark svg{display:block;height:clamp(22px,2.3vw,34px);width:auto}
+  /* bars are sized in whole px (not scaled) so every edge lands on the pixel grid */
+  .bars{
+    --bar:2px; --gap:4px; --short:19px; --tall:33px;
+    display:flex;
+    align-items:flex-end;
+    gap:var(--gap);
+  }
+  .bars i{display:block;width:var(--bar);height:var(--short);background:var(--cream)}
+  .bars i:last-child{width:calc(var(--bar) + 1px);height:var(--tall);background:var(--accent)}
   .wordmark{
     font-size:clamp(15px,1.5vw,23px);
     font-variant-numeric:lining-nums;          /* Playfair defaults to oldstyle figures */
@@ -128,6 +136,7 @@
     .page{padding-bottom:calc(44px + env(safe-area-inset-bottom))}
     .mark{gap:12px}
     .mark svg{height:21px}
+    .bars{--bar:1px;--gap:3px;--short:13px;--tall:22px}
     .wordmark{font-size:13px;letter-spacing:.3em;text-indent:.3em}
 
     h1{
@@ -181,24 +190,9 @@
 
   <div class="page">
     <header>
-      <a class="mark" href="/" aria-label="10BIPS — home">
-        <svg viewBox="0 0 80.4 38" aria-hidden="true">
-          <g fill="#f4f1ea">
-            <rect x="0" y="16" width="2.7" height="22"/>
-            <rect x="7" y="16" width="2.7" height="22"/>
-            <rect x="14" y="16" width="2.7" height="22"/>
-            <rect x="21" y="16" width="2.7" height="22"/>
-            <rect x="28" y="16" width="2.7" height="22"/>
-            <rect x="35" y="16" width="2.7" height="22"/>
-            <rect x="42" y="16" width="2.7" height="22"/>
-            <rect x="49" y="16" width="2.7" height="22"/>
-            <rect x="56" y="16" width="2.7" height="22"/>
-            <rect x="63" y="16" width="2.7" height="22"/>
-            <rect x="70" y="16" width="2.7" height="22"/>
-          </g>
-          <rect x="77" y="0" width="3.4" height="38" fill="#8A2B18"/>
-        </svg>
-        <span class="wordmark">10BIPS</span>
+      <a class="mark" href="/" aria-label="10bips — home">
+        <span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+        <span class="wordmark">10bips</span>
       </a>
     </header>
 
