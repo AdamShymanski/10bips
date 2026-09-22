@@ -38,6 +38,14 @@
     -webkit-font-smoothing:antialiased;
     text-rendering:optimizeLegibility;
     overflow:hidden;
+    -webkit-user-select:none;
+    user-select:none;
+  }
+
+  /* the email address stays the one selectable/copyable bit of text */
+  .contact{
+    -webkit-user-select:text;
+    user-select:text;
   }
 
   /* ── drifting pinstripe field ──────────────────────────────── */
