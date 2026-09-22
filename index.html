@@ -225,6 +225,40 @@
   var WARM_ODDS = 0.07;                // share of lines that come in orange
   var COLD_A = 0.115, WARM_A = 0.9;    // peak opacity (the deeper accent needs more of it)
 
+  // ── accent palette — cycles on every click ──────────────────
+  var PALETTE = [
+    '#8A2B18', // rust (original)
+    '#B8752E', // amber
+    '#9E2B25', // crimson
+    '#6E1E3A', // wine
+    '#4B2E83', // violet
+    '#35316B', // indigo
+    '#2A4D8F', // cobalt
+    '#1B6E72', // teal
+    '#1F6B4F', // emerald
+    '#A6821C'  // gold
+  ];
+  function hexToRgb(hex){
+    var v = hex.replace('#','');
+    return v.match(/.{2}/g).map(function(h){ return parseInt(h,16); }).join(',');
+  }
+  var accentIdx = 0;
+  var ACCENT_RGB = hexToRgb(PALETTE[0]);
+  try {
+    var saved = localStorage.getItem('10bips-accent');
+    if (saved !== null) accentIdx = parseInt(saved, 10) % PALETTE.length;
+  } catch(e){}
+  function setAccent(idx){
+    accentIdx = ((idx % PALETTE.length) + PALETTE.length) % PALETTE.length;
+    ACCENT_RGB = hexToRgb(PALETTE[accentIdx]);
+    document.documentElement.style.setProperty('--accent', PALETTE[accentIdx]);
+  }
+  setAccent(accentIdx);
+  document.addEventListener('click', function(){
+    setAccent(accentIdx + 1);
+    try { localStorage.setItem('10bips-accent', accentIdx); } catch(e){}
+  });
+
   // a reduce-motion preference calms the drift rather than killing it:
   // low-contrast, constant-velocity background motion, no parallax, no entrance jumps
   var CALM = 0.4;
@@ -273,10 +307,10 @@
       if (l.warm){
         // the odd warm thread, feathered top and bottom
         var g = ctx.createLinearGradient(0, 0, 0, H);
-        g.addColorStop(0,    'rgba(138,43,24,0)');
-        g.addColorStop(0.22, 'rgba(138,43,24,' + (a * WARM_A) + ')');
-        g.addColorStop(0.78, 'rgba(138,43,24,' + (a * WARM_A) + ')');
-        g.addColorStop(1,    'rgba(138,43,24,0)');
+        g.addColorStop(0,    'rgba(' + ACCENT_RGB + ',0)');
+        g.addColorStop(0.22, 'rgba(' + ACCENT_RGB + ',' + (a * WARM_A) + ')');
+        g.addColorStop(0.78, 'rgba(' + ACCENT_RGB + ',' + (a * WARM_A) + ')');
+        g.addColorStop(1,    'rgba(' + ACCENT_RGB + ',0)');
         ctx.fillStyle = g;
       } else {
         ctx.fillStyle = 'rgba(255,255,255,' + (a * COLD_A) + ')';
