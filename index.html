@@ -300,21 +300,23 @@
   // tuning
   var SPEED_D = 200, SPEED_M = 150;    // px/s — paired with the spawn rate to hold a ~40px pitch
   var MIN_GAP = 100, MAX_GAP = 300;    // ms between new lines
-  var WARM_ODDS = 0.07;                // share of lines that come in orange
+  var WARM_ODDS = 0.07;                // share of lines that come in the accent ink
   var COLD_A = 0.115, WARM_A = 0.9;    // peak opacity (the deeper accent needs more of it)
 
-  // ── accent palette — cycles on every click ──────────────────
+  // ── accent palette: seven inks, cycled on every click ───────
+  // Rust is the house ink (favicon, mask icon) and stays exact. The other six sit
+  // around the colour wheel in order, one per hue family, each tuned so its line
+  // carries the same weight on the ink background: low-chroma hues (ochre, jade,
+  // prussian) are set a little lighter because they read darker at equal lightness.
+  // Closest pair (jade/prussian) is 0.081 apart in OKLab, so no two read alike.
   var PALETTE = [
-    '#8A2B18', // rust (original)
-    '#B8752E', // amber
-    '#9E2B25', // crimson
-    '#6E1E3A', // wine
-    '#4B2E83', // violet
-    '#35316B', // indigo
-    '#2A4D8F', // cobalt
-    '#1B6E72', // teal
-    '#1F6B4F', // emerald
-    '#A6821C'  // gold
+    '#8A2B18', // rust     oklch(0.43 0.133  33)
+    '#936D1C', // ochre    oklch(0.56 0.105  82)
+    '#1A7551', // jade     oklch(0.50 0.101 162)
+    '#0E6C7B', // prussian oklch(0.49 0.082 212)
+    '#295CA5', // cobalt   oklch(0.48 0.130 258)
+    '#644395', // violet   oklch(0.46 0.131 300)
+    '#87305F'  // madder   oklch(0.45 0.130 350)
   ];
   function hexToRgb(hex){
     var v = hex.replace('#','');
