@@ -1,14 +1,17 @@
 {
+  "id": "/",
   "name": "10bips",
   "short_name": "10bips",
-  "description": "10bips: quantifying event contracts.",
+  "description": "10bips prices resolution risk to make prediction markets bankable.",
+  "lang": "en",
   "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#f4f1ea",
   "theme_color": "#f4f1ea",
   "icons": [
-    { "src": "/android-chrome-192x192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "/android-chrome-512x512.png", "sizes": "512x512", "type": "image/png" },
-    { "src": "/android-chrome-512x512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    { "src": "/android-chrome-192x192.png?v=2", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/android-chrome-512x512.png?v=2", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/android-chrome-512x512-maskable.png?v=2", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ]
 }
