@@ -246,6 +246,7 @@ tr.ev.nw td{border-top-color:transparent;animation:kWash 2.8s var(--ui) .2s back
 .ev .c-a a:hover{color:var(--fg)}
 .ev .w{display:flex;align-items:center;gap:12px;font:400 13px/1 var(--mono);font-variant-numeric:tabular-nums;justify-content:flex-end}
 .wb{display:block;width:84px;height:1px;background:var(--fg);transform-origin:left;transform:scaleX(0);opacity:0}
+.ev.D .wb{background:var(--acc)}
 .wt{min-width:64px;text-align:right}
 tr.dr td{height:auto;padding:0;border:0}
 .detw{display:grid;grid-template-rows:0fr;transition:grid-template-rows .7s var(--ease)}
@@ -1085,14 +1086,18 @@ function mkRow(e) {
   tr._o = o; tickRow(o, Date.now());
   return o;
 }
-// the window column: a 1 px line that shortens over the proposal's own window, plus the time left
+// the window column: a 1 px line that shortens over the proposal's own window, plus the time left.
+// A dispute row freezes the line in oxblood where the dispute cut the window; a settlement row says whether the window was disputed
 function tickRow(o, now) {
-  var e = o.e, r = e.r, txt = '', x = 0, op = 0;
-  if (e.k === 'P') {
-    if (r.dT) txt = 'disputed ' + hm(r.dT);
-    else if (r.sT || now >= r.eT) txt = 'closed';
-    else { var L = r.eT - r.pT; txt = left((r.eT - now) / 1000) + ' left'; x = L > 0 ? clamp((r.eT - now) / L, 0, 1) : 0; op = 1; }
+  var e = o.e, r = e.r, L = r.eT - r.pT, txt, x = 0, op = 0;
+  if (e.k === 'D') {
+    if (r.pT && r.dT >= r.pT) { txt = left((r.dT - r.pT) / 1000) + ' in'; if (L > 0) { x = clamp((r.eT - r.dT) / L, 0, 1); op = 1; } }
+    else txt = 'disputed';
   }
+  else if (e.k === 'S') txt = r.dT ? 'disputed' : 'no dispute';
+  else if (r.dT) txt = 'disputed ' + hm(r.dT);
+  else if (r.sT || now >= r.eT) txt = 'closed';
+  else { txt = left((r.eT - now) / 1000) + ' left'; x = L > 0 ? clamp((r.eT - now) / L, 0, 1) : 0; op = 1; }
   if (o.wtx !== txt) { o.wt.textContent = txt; o.wtx = txt; }
   o.wb.style.transform = 'scaleX(' + x.toFixed(4) + ')'; o.wb.style.opacity = op;
 }
