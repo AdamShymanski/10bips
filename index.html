@@ -373,20 +373,22 @@ tr.dr td{height:auto;padding:0;border:0}
 .flagline{position:absolute;left:0;right:0;bottom:-8px;height:1px;background:var(--acc);transform:scaleX(0);transform-origin:left;pointer-events:none}
 .tm .flagline,.refs li .flagline,.hash .flagline{bottom:-1px}
 
-/* footer */
-.foot .wrap{padding-top:96px;padding-bottom:40px}
-.big{display:flex;align-items:flex-end;gap:56px}
-.bigbars{display:flex;align-items:flex-end;gap:22px;height:236px;padding-bottom:30px}
-.bigbars i{display:block;width:11px;height:136px;background:var(--ink);transform:scaleY(0);transform-origin:bottom;transition:transform 1.2s var(--ease) calc(.1s + var(--i,0) * 80ms)}
-.foot[data-in] .bigbars i{transform:none}
-.bigbars i.tall{width:16px;height:236px;background:var(--ox);transition-duration:1.5s}
-.bigwm{display:inline-block;overflow:hidden;padding:.1em .02em .24em;margin:-.1em -.02em -.24em;font:500 300px/.8 var(--serif);letter-spacing:-.01em;font-variant-numeric:lining-nums}
-.bigwm>span{display:inline-block;transform:translate3d(0,108%,0);transition:transform 1.5s var(--ease) .3s}
-.foot[data-in] .bigwm>span{transform:none}
-.frow{display:flex;justify-content:space-between;align-items:baseline;gap:24px;margin-top:64px;padding-top:22px;border-top:1px solid var(--line);font:400 14px/1.5 var(--mono);color:var(--mut)}
-.frow nav{display:flex;gap:28px;flex-wrap:wrap}
-.frow a{transition:color .26s var(--ui)}
-.frow a:hover{color:var(--fg)}
+/* footer: a colophon. The field comes back as a closing band, then who we are, how to reach us and where to go */
+.foot .wrap{padding-top:0;padding-bottom:0}
+.foot .fband{display:block;width:calc(100% + 2 * var(--pad));height:96px;margin:0 calc(-1 * var(--pad));border-bottom:1px solid var(--line)}
+.foot .fgrid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,3fr) minmax(0,2fr);column-gap:48px;padding:56px 0 64px}
+.foot .fcol{display:flex;flex-direction:column;align-items:flex-start;gap:10px;font:400 15px/1.4 var(--sans);color:var(--sec)}
+.foot .fcol .lab{margin-bottom:8px}
+.foot .fcol a{position:relative;color:var(--fg)}
+.foot .fcol a:not(.mark)::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;background:var(--ox);transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease)}
+.foot .fcol a:not(.mark):hover::after,.foot .fcol a:not(.mark):focus-visible::after{transform:none;transform-origin:left}
+.foot .fmark{margin-bottom:26px}
+.foot:not([data-in]) .fmark .bars i{transform:scaleY(0)}
+.foot:not([data-in]) .fmark .wm{opacity:0}
+.foot .fline{font:italic 300 30px/1.2 var(--serif);color:var(--fg);margin:0;max-width:420px}
+.foot .fsmall{display:flex;justify-content:space-between;gap:24px;padding:20px 0 34px;border-top:1px solid var(--line);font:400 13px/1.5 var(--mono);color:var(--mut);opacity:0;transition:opacity 1.2s var(--ease) .7s}
+/* the last row sits below the reveal line, so it arrives with the footer itself */
+.foot[data-in] .fsmall{opacity:1}
 
 @media (max-width:1100px){h1.pt{font-size:76px}.subt{font-size:26px}.stmt{font-size:44px}.ha{column-gap:40px}}
 @media (max-width:900px){
@@ -437,8 +439,11 @@ h1.pt{font-size:48px}
 .tm{grid-template-columns:1fr;row-gap:6px}
 .hash{grid-template-columns:1fr;row-gap:6px}
 .h3{margin-top:56px}
-.bigwm{font-size:min(96px,20vw)}.bigbars{height:76px;gap:7px;padding-bottom:10px}.bigbars i{width:4px;height:44px}.bigbars i.tall{width:5px;height:76px}.big{gap:18px}
-.frow{flex-direction:column}
+.foot .fband{height:64px}
+.foot .fgrid{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:36px;column-gap:24px;padding:40px 0 44px}
+.foot .fgrid>.fcol:first-child{grid-column:1 / -1}
+.foot .fline{font-size:24px}
+.foot .fsmall{flex-direction:column;gap:6px}
 .pop{max-width:calc(100% - 24px)}
 }
 
@@ -446,13 +451,13 @@ h1.pt{font-size:48px}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;transition-delay:0s !important}}
 .rm *,.rm *::before,.rm *::after{transition-duration:.2s !important;transition-delay:0s !important;animation-duration:.2s !important;animation-delay:0s !important}
 .rm .rv,.rm .mfoot,.rm .hi,.rm .mr,.rm .tm,.rm .chk li,.rm .refs li,.rm .mrest .h3,.rm .mrest .para,.rm .hash,.rm .close,.rm .links a,.rm .strip .cell>.lab,.rm .strip .cell>.sv,.rm .sfig text,.rm .pop{transform:none !important}
-.rm .tb th,.rm .pt .w>span,.rm .bars i,.rm .bigbars i,.rm .bigwm>span,.rm .rule,.rm .tick,.rm .rl,.rm .nav::after,.rm .mr::before,.rm .mr:last-of-type::after,.rm .tm::after,.rm .chk li::after,.rm .refs li::after,.rm .dk{transform:none !important;transition:none !important}
+.rm .tb th,.rm .pt .w>span,.rm .bars i,.rm .rule,.rm .tick,.rm .rl,.rm .nav::after,.rm .mr::before,.rm .mr:last-of-type::after,.rm .tm::after,.rm .chk li::after,.rm .refs li::after,.rm .dk{transform:none !important;transition:none !important}
 .rm .dk:not(.on){opacity:0}
 .rm .again>.tick,.rm tr.ev.nw td{animation:none !important}
 </style>
 <noscript><style>
 .rv,.hi,.mfoot,.mr,.tm,.chk li,.refs li,.mrest .h3,.mrest .para,.hash,.close,.links a,.nav .pill,.wm,.strip .cell>.lab,.strip .cell>.sv,.tb th{opacity:1 !important;transform:none !important;animation:none !important}
-.pt .w>span,.bars i,.bigbars i,.bigwm>span,.rule,.tick,.rl,.nav::after,.mr::before,.mr:last-of-type::after,.tm::after,.chk li::after,.refs li::after{transform:none !important}
+.pt .w>span,.bars i,.rule,.tick,.rl,.nav::after,.mr::before,.mr:last-of-type::after,.tm::after,.chk li::after,.refs li::after{transform:none !important}
 .sfig .pl,.sfig .bk{stroke-dashoffset:0}.sfig text{opacity:1;transform:none}.sfig .dk{transform:none}
 .method5 .mwrap{height:auto}.mstick{position:relative;top:0;height:auto}
 </style></noscript>
@@ -621,10 +626,17 @@ h1.pt{font-size:48px}
 
 <footer class="s paper foot" data-rv="" data-sec="">
 <span class="rule"></span>
-<div class="wrap"><div class="wide">
-<div class="big" role="img" aria-label="10bips"><span class="bigbars" aria-hidden="true"><i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i class="tall" style="--i:4"></i></span><span class="bigwm" aria-hidden="true"><span>10bips</span></span></div>
-<div class="frow rv"><nav aria-label="Contact"><a href="mailto:contact@10bips.com">contact@10bips.com</a><a href="https://x.com/tenbips">X @tenbips</a><span>Łódź, Poland</span></nav><span>Research, not investment advice. 10bips may hold positions in markets it scores. © 2026 10bips</span></div>
-</div></div>
+<div class="wrap">
+<canvas class="fband" id="fband" aria-hidden="true"></canvas>
+<div class="wide">
+<div class="fgrid">
+<div class="fcol rv"><a class="mark fmark" href="#top" aria-label="10bips, back to the top"><span class="bars" aria-hidden="true"><i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i class="tall" style="--i:4"></i></span><span class="wm">10bips</span></a><p class="fline">Quantifying event contracts.</p></div>
+<div class="fcol rv"><span class="lab">Contact</span><a href="mailto:contact@10bips.com?subject=10bips">contact@10bips.com</a><a href="https://x.com/tenbips">X @tenbips</a><span>Łódź, Poland</span></div>
+<nav class="fcol rv" aria-label="Sections"><span class="lab">Sections</span><a href="#why">Problem</a><a href="#stream">Live</a><a href="#meas">Measure</a><a href="#method">Method</a></nav>
+</div>
+<div class="fsmall"><span>Research, not investment advice. 10bips may hold positions in markets it scores.</span><span>© 2026 10bips</span></div>
+</div>
+</div>
 </footer>
 
 <script>
@@ -688,7 +700,7 @@ var E = {
   fig: $('fig1'), rods: $('rods'), fmsg: $('fmsg'), ro: $('ro'), roM: $('ro-m'), roO: $('ro-o'), roS: $('ro-s'), rolive: $('ro-live'),
   pinwrap: $('mwrap'), slist: $('slist'), seq: $('seq'), sfig: $('sfig'), cur: $('f-cur'),
   fDk: $('f-dk'), fTd: $('f-td'), fBkw: $('f-bkw'), fTw: $('f-tw'), fBkv: $('f-bkv'), fTv: $('f-tv'), fTb: $('f-tb'), fTb2: $('f-tb2'),
-  mrest: $('mrest'), pop: $('pop'), hashv: $('hashv')
+  mrest: $('mrest'), pop: $('pop'), hashv: $('hashv'), fband: $('fband')
 };
 E.steps = Array.prototype.slice.call(E.slist.querySelectorAll('.stepbox'));
 E.terms = Array.prototype.slice.call(E.seq.querySelectorAll('.term'));
@@ -800,7 +812,7 @@ doc.addEventListener('click', function (e) {
 var DIM = {};
 function sizeAll() {
   var dpr = Math.min(window.devicePixelRatio || 1, 2);
-  [['pin', E.pin], ['rods', E.rods]].forEach(function (p) {
+  [['pin', E.pin], ['rods', E.rods], ['fband', E.fband]].forEach(function (p) {
     var c = p[1]; if (!c) return;
     var cs = getComputedStyle(c), w = c.clientWidth, h = c.clientHeight;
     c.width = Math.round(w * dpr); c.height = Math.round(h * dpr);
@@ -812,6 +824,22 @@ function sizeAll() {
 
 // pinstripe field: 1 px lines drift left, invisible on the left third, about 7% arrive in the accent; scrolling briefly speeds them up
 var PINS = []; for (var pi = 0; pi < 110; pi++) PINS.push({ x: Math.random(), a: Math.random() < .07 });
+// the footer's closing band: the same field as the hero, fading in when the page reaches its end
+var FPINS = []; for (var fi = 0; fi < 150; fi++) FPINS.push({ x: Math.random(), a: Math.random() < .07 });
+var footAt = 0;
+function drawFoot(dt, t) {
+  var D = DIM.fband; if (!D || !D.W) return;
+  if (!footAt) footAt = t;
+  var ctx = D.ctx, W = D.W, H = D.H, dpr = D.dpr, r = rm(), v = (r ? 80 : 200 * (1 + S.boost)) / W, A = r ? 1 : eOut(clamp((t - footAt - 250) / 1600, 0, 1));
+  ctx.clearRect(0, 0, W, H);
+  for (var i = 0; i < FPINS.length; i++) {
+    var p = FPINS[i]; p.x -= v * dt; if (p.x < 0) { p.x += 1; p.a = Math.random() < .07; }
+    var f = clamp((p.x - .33) / .67, 0, 1); if (f <= 0) continue;
+    ctx.globalAlpha = A * f * (p.a ? .95 : .5); ctx.fillStyle = p.a ? D.acc : D.fg;
+    ctx.fillRect(Math.round(p.x * W * dpr) / dpr, 0, 1, H);
+  }
+  ctx.globalAlpha = 1;
+}
 function drawPins(dt, t) {
   var D = DIM.pin; if (!D || !D.W) return;
   var ctx = D.ctx, W = D.W, H = D.H, dpr = D.dpr, r = rm();
@@ -1298,7 +1326,9 @@ function loadHash() {
 }
 
 /* ================= method: scroll-locked walk-through ================= */
-var FST = [0, .1, .2, .36, .88], FEN = [.1, .2, .36, .88, 1], STORYOFF = [.9, .8, .64, .12, 0];
+// each step draws exactly its own stretch of the price line, measured on the path: the window opens at x 70, the dispute lands at x 120,
+// the vote starts at x 240 and the vote ends, and payment begins, at x 470. Payment draws no line of its own, only the three ways the market pays
+var FST = [0, .0933, .1865, .5122, 1], FEN = [.0933, .1865, .5122, 1, 1], STORYOFF = [.9067, .8135, .4878, 0, 0];
 var M = { st: -1, ps: null, off: null, prog: null, bof: null, bl: null, pinned: false, hold: 0, stepAt: Date.now(), pv: -1, cx: null, cxs: null };
 var mqPin = mq('(min-width: 901px) and (min-height: 680px)');
 function syncPin() { M.pinned = !!mqPin.matches; E.pinwrap.classList.toggle('still', !M.pinned); M.ps = null; }
@@ -1315,14 +1345,15 @@ function methodScrub(dt, vh, r) {
     M.ps = r || M.ps == null ? raw : damp(M.ps, raw, 9, dt);
     var p = M.ps; st = Math.min(4, Math.max(0, Math.floor(p * 5 - 1e-9)));
     var loc = clamp(p * 5 - st, 0, 1);
-    off = 1 - (FST[st] + (FEN[st] - FST[st]) * loc); prog = p; bo = st >= 4 ? clamp(loc * 2.5, 0, 1) : 0;
+    off = 1 - (FST[st] + (FEN[st] - FST[st]) * loc); prog = p; bo = st >= 4 ? eIO(clamp((loc - .06) / .5, 0, 1)) : 0;
     setStep(st);
   } else {
     st = M.st < 0 ? 0 : M.st; setStep(st);
     var k = r ? 1e3 : 4.5;
     M.off = M.off == null ? STORYOFF[st] : damp(M.off, STORYOFF[st], k, dt); off = M.off;
     M.prog = M.prog == null ? (st + 1) / 5 : damp(M.prog, (st + 1) / 5, k, dt); prog = M.prog;
-    M.bof = damp(M.bof == null ? 0 : M.bof, st >= 4 ? 1 : 0, k, dt); bo = M.bof;
+    // the payout branches wait until the line has reached the payment point
+    M.bof = damp(M.bof == null ? 0 : M.bof, st >= 4 && M.off < .004 ? 1 : 0, k, dt); bo = M.bof;
   }
   css(E.pinwrap, '--off', off, 4); css(E.pinwrap, '--prog', prog, 4); css(E.pinwrap, '--bof', 1 - bo, 4);
   var bl = bo > .55; if (bl !== M.bl) { M.bl = bl; tog(E.fTb, bl); tog(E.fTb2, bl); }
@@ -1398,6 +1429,7 @@ function frame(t) {
   S.sy = y; S.boost *= Math.exp(-2.6 * dt);
   scrub(dt);
   if (vis(E.pin)) drawPins(dt, t);
+  if (vis(E.fband)) drawFoot(dt, t);
   if (vis(E.rods)) drawRods(dt, t);
   count(t);
   S.raf = requestAnimationFrame(frame);
