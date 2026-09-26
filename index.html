@@ -429,13 +429,38 @@ h1.pt{font-size:48px}
 .rods{height:320px}
 .mr{grid-template-columns:1fr;row-gap:10px}
 .mr .h:hover{transform:none}
-.method5 .mwrap{height:auto}
-.mstick{position:relative;top:0;height:auto;min-height:0;padding:64px var(--pad) 24px}
-.mgrid{grid-template-columns:1fr;row-gap:24px}
-.mhead{flex-direction:column}
-.mlead{text-align:left}
-.seq{font-size:22px}
-.sfig{max-height:none}
+/* phone: the method locks too. The equation and figure hold still, and one step card at a time takes its place under them */
+.method5 .mwrap{height:440vh}
+.mstick{min-height:0;height:calc(100vh - var(--navh));height:calc(100svh - var(--navh));padding:18px var(--pad) 14px}
+.mhead{flex-direction:column;gap:6px;margin-bottom:0}
+.mlead{text-align:left;font-size:15px;line-height:1.42}
+.seq{font-size:22px;margin:12px 0 10px}
+.seq .no{font-size:14px;margin-left:8px}
+.mgrid{display:flex;flex-direction:column;gap:8px}
+.mgrid>.figw{order:-1}
+.sfig{max-height:34vh;max-height:34svh}
+/* the figure shrinks to the phone's width, so its labels are set larger to stay readable */
+.sfig text{font-size:18px}
+.slist{display:grid}
+.stepbox{grid-area:1/1;opacity:0;transform:translateY(14px);border-bottom:0;padding:10px 0 0;pointer-events:none;transition:opacity .4s var(--ui),transform .8s var(--ease)}
+.stepbox.on{opacity:1;transform:none;pointer-events:auto;transition:opacity .6s var(--ui) .14s,transform 1s var(--ease) .14s}
+.stepbox.pv:not(.on){opacity:0}
+.stepbox::after{display:none}
+.stepbox .sh3{font-size:24px}
+.stepbox .sp{grid-template-rows:1fr;opacity:1;margin-top:4px;font-size:16px;line-height:1.5;transition:none}
+.mfoot{margin-top:10px;gap:14px}
+.mfoot .cap{font-size:12px;line-height:1.4}
+/* not locked (a short screen): the plain list */
+.method5 .mwrap.still{height:auto}
+.mwrap.still .mstick{height:auto;padding:64px var(--pad) 24px}
+.mwrap.still .mgrid{gap:24px}
+.mwrap.still .sfig{max-height:none}
+.mwrap.still .slist{display:flex}
+.mwrap.still .stepbox{grid-area:auto;opacity:.45;transform:none;pointer-events:auto;border-bottom:1px solid var(--line);padding:14px 0}
+.mwrap.still .stepbox.on,.mwrap.still .stepbox.pv.on{opacity:1}
+.mwrap.still .stepbox.pv:not(.on){opacity:.8}
+.mwrap.still .stepbox .sp{grid-template-rows:0fr;opacity:0;margin-top:0}
+.mwrap.still .stepbox.on .sp{grid-template-rows:1fr;opacity:1;margin-top:8px}
 .tm{grid-template-columns:1fr;row-gap:6px}
 .hash{grid-template-columns:1fr;row-gap:6px}
 .h3{margin-top:56px}
@@ -564,7 +589,7 @@ h1.pt{font-size:48px}
 <button type="button" class="stepbox" data-step="3"><span class="sn">4</span><span class="sh3">Vote</span><span class="sp"><span>A second dispute goes to a vote of token holders, after 1 to 2 days of public debate. For 3 to 4 days the capital is locked, and E[τ | D] · r is the cost of that wait.</span></span></button>
 <button type="button" class="stepbox" data-step="4"><span class="sn">5</span><span class="sh3">Payment</span><span class="sp"><span>The market pays: in full but late, split 50/50, or to the other side. Resolution risk adds these outcomes up, weighted by how likely each is, before anyone disputes.</span></span></button>
 </div>
-<div class="rv"><svg class="sfig" id="sfig" viewBox="0 0 580 400" role="img" aria-label="Illustrative price of the proposed side: steady near 1 during the dispute window, falling after a dispute, drifting during the vote, then paying 1 late or 0">
+<div class="rv figw"><svg class="sfig" id="sfig" viewBox="0 0 580 400" role="img" aria-label="Illustrative price of the proposed side: steady near 1 during the dispute window, falling after a dispute, drifting during the vote, then paying 1 late or 0">
 <line class="ax" x1="20" y1="50" x2="545" y2="50"></line><line class="ax" x1="20" y1="340" x2="545" y2="340"></line>
 <line class="cur" id="f-cur" x1="20" y1="44" x2="20" y2="346"></line>
 <text class="on" x="552" y="54">$1</text><text class="on" x="552" y="344">0</text>
@@ -1330,7 +1355,7 @@ function loadHash() {
 // the vote starts at x 240 and the vote ends, and payment begins, at x 470. Payment draws no line of its own, only the three ways the market pays
 var FST = [0, .0933, .1865, .5122, 1], FEN = [.0933, .1865, .5122, 1, 1], STORYOFF = [.9067, .8135, .4878, 0, 0];
 var M = { st: -1, ps: null, off: null, prog: null, bof: null, bl: null, pinned: false, hold: 0, stepAt: Date.now(), pv: -1, cx: null, cxs: null };
-var mqPin = mq('(min-width: 901px) and (min-height: 680px)');
+var mqPin = mq('(min-width: 901px) and (min-height: 680px), (max-width: 900px) and (min-height: 700px)');
 function syncPin() { M.pinned = !!mqPin.matches; E.pinwrap.classList.toggle('still', !M.pinned); M.ps = null; }
 function setStep(st) {
   if (st === M.st) return; M.st = st;
@@ -1341,7 +1366,8 @@ function setStep(st) {
 function methodScrub(dt, vh, r) {
   var st, off, prog, bo;
   if (M.pinned) {
-    var rp = E.pinwrap.getBoundingClientRect(), raw = clamp(-rp.top / Math.max(1, rp.height - vh), 0, 1);
+    // progress counts from the moment the frame locks under the nav to the moment it lets go
+    var rp = E.pinwrap.getBoundingClientRect(), nh = navH(), raw = clamp((nh - rp.top) / Math.max(1, rp.height - (vh - nh)), 0, 1);
     M.ps = r || M.ps == null ? raw : damp(M.ps, raw, 9, dt);
     var p = M.ps; st = Math.min(4, Math.max(0, Math.floor(p * 5 - 1e-9)));
     var loc = clamp(p * 5 - st, 0, 1);
@@ -1361,7 +1387,7 @@ function methodScrub(dt, vh, r) {
 }
 // a step, an equation term or a point on Figure 2: pinned, the page travels to that step; unpinned, the step opens in place
 function goStep(i, fromAway) {
-  if (M.pinned) { var pr = E.pinwrap.getBoundingClientRect(), total = pr.height - innerHeight; travel(window.scrollY + pr.top + total * (i + .55) / 5); return; }
+  if (M.pinned) { var pr = E.pinwrap.getBoundingClientRect(), nh = navH(), total = pr.height - (innerHeight - nh); travel(window.scrollY + pr.top - nh + total * (i + .5) / 5); return; }
   M.hold = Date.now() + 12000; M.stepAt = Date.now(); setStep(i);
   if (fromAway || !vis(E.slist, -80)) travel($('method').getBoundingClientRect().top + window.scrollY - navH());
 }
@@ -1420,10 +1446,23 @@ function scrub(dt) {
   methodScrub(dt, vh, r);
   if (toc !== S.toc) { S.toc = toc; setActive(toc); if (!S.navHover) navTo(navActive()); }
 }
+// on a phone, when a swipe comes to rest between two steps, the page glides to the nearest one, so each swipe locks onto a step
+var SN = { t: 0, touch: false };
+window.addEventListener('touchstart', function () { SN.touch = true; }, { passive: true });
+window.addEventListener('touchend', function () { SN.touch = false; SN.t = performance.now(); }, { passive: true });
+window.addEventListener('scroll', function () { SN.t = performance.now(); }, { passive: true });
+function settle() {
+  if (!M.pinned || innerWidth > 900 || rm()) return;
+  var pr = E.pinwrap.getBoundingClientRect(), nh = navH(), total = pr.height - (innerHeight - nh), p = (nh - pr.top) / total;
+  if (p <= .01 || p >= .99) return;
+  var f = (clamp(Math.floor(p * 5), 0, 4) + .5) / 5, dy = (f - p) * total;
+  if (Math.abs(dy) > 18) travel(window.scrollY + dy);
+}
 function frame(t) {
   if (!S.run) return;
   var dt = Math.min(.05, Math.max(0, (t - S.lt) / 1000)); S.lt = t;
-  if (S.tr) { var tr = S.tr, k = clamp((t - tr.t0) / tr.dur, 0, 1); window.scrollTo(0, tr.y0 + tr.dy * eIO(k)); if (k >= 1) { S.tr = null; if (tr.done) tr.done(); } }
+  if (S.tr) { var tr = S.tr, k = clamp((t - tr.t0) / tr.dur, 0, 1); window.scrollTo(0, tr.y0 + tr.dy * eIO(k)); if (k >= 1) { S.tr = null; SN.t = 0; if (tr.done) tr.done(); } }
+  else if (SN.t && !SN.touch && t - SN.t > 170) { SN.t = 0; settle(); }
   var y = window.scrollY;
   if (S.sy != null) { var add = Math.abs(y - S.sy) * .004; if (add) S.boost = Math.max(S.boost, Math.min(1.6, S.boost + add)); }
   S.sy = y; S.boost *= Math.exp(-2.6 * dt);
