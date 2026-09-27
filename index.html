@@ -98,7 +98,7 @@
 /* 10bips.com. Built from the Round 6 artboard on the "10bips.com mockup" canvas, plus the Round 7 interaction pass.
    One motion vocabulary: entrances and line draws on expo.out (--ease) 0.9 to 1.6 s, UI feedback on power2.out (--ui) 0.2 to 0.3 s,
    stagger 80 ms, travel on quart in-out, and exponential damping for anything that follows the scroll or the pointer. */
-:root{--ink:#0a0a0b;--paper:#f4f1ea;--ox:#8C2319;--oxhi:#C24A3E;--mi:#b0aca4;--mpp:#6f6b64;--li:rgba(244,241,234,.12);--lp:rgba(10,10,11,.14);--g:28px;--pad:56px;--navh:72px;--ease:cubic-bezier(.19,1,.22,1);--ui:cubic-bezier(.215,.61,.355,1);--serif:"Newsreader",Georgia,"Times New Roman",serif;--sans:"Geist",system-ui,-apple-system,"Helvetica Neue",sans-serif;--mono:"Geist Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+:root{--grain:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScyNDAnIGhlaWdodD0nMjQwJz48ZmlsdGVyIGlkPSduJz48ZmVUdXJidWxlbmNlIHR5cGU9J2ZyYWN0YWxOb2lzZScgYmFzZUZyZXF1ZW5jeT0nLjg1JyBudW1PY3RhdmVzPScyJyBzdGl0Y2hUaWxlcz0nc3RpdGNoJy8+PGZlQ29sb3JNYXRyaXggdmFsdWVzPScwIDAgMCAwIDAuMDUgMCAwIDAgMCAwLjA0IDAgMCAwIDAgMC4wMyAwIDAgMCAuMDcgMCcvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPScxMDAlJyBoZWlnaHQ9JzEwMCUnIGZpbHRlcj0ndXJsKCNuKScvPjwvc3ZnPg==);--ink:#0a0a0b;--paper:#f4f1ea;--ox:#8C2319;--oxhi:#C24A3E;--mi:#b0aca4;--mpp:#6f6b64;--li:rgba(244,241,234,.12);--lp:rgba(10,10,11,.14);--g:28px;--pad:56px;--navh:72px;--ease:cubic-bezier(.19,1,.22,1);--ui:cubic-bezier(.215,.61,.355,1);--serif:"Newsreader",Georgia,"Times New Roman",serif;--sans:"Geist",system-ui,-apple-system,"Helvetica Neue",sans-serif;--mono:"Geist Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 body{margin:0;font-family:var(--sans);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;background:var(--paper);color:var(--ink);overflow-x:clip}
@@ -107,7 +107,7 @@ button,input{font:inherit;color:inherit}
 p,h1,h2,h3,ol{margin:0}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
 ::selection{background:var(--ox);color:var(--paper)}
-.paper{background-color:var(--paper);background-image:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScyNDAnIGhlaWdodD0nMjQwJz48ZmlsdGVyIGlkPSduJz48ZmVUdXJidWxlbmNlIHR5cGU9J2ZyYWN0YWxOb2lzZScgYmFzZUZyZXF1ZW5jeT0nLjg1JyBudW1PY3RhdmVzPScyJyBzdGl0Y2hUaWxlcz0nc3RpdGNoJy8+PGZlQ29sb3JNYXRyaXggdmFsdWVzPScwIDAgMCAwIDAuMDUgMCAwIDAgMCAwLjA0IDAgMCAwIDAgMC4wMyAwIDAgMCAuMDcgMCcvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPScxMDAlJyBoZWlnaHQ9JzEwMCUnIGZpbHRlcj0ndXJsKCNuKScvPjwvc3ZnPg==);background-size:240px 240px;color:var(--ink);--line:var(--lp);--mut:var(--mpp);--fg:var(--ink);--fgi:var(--paper);--sec:#34312d;--acc:var(--ox);--bg:var(--paper);--tint:rgba(10,10,11,.028)}
+.paper{background-color:var(--paper);background-image:var(--grain);background-size:240px 240px;color:var(--ink);--line:var(--lp);--mut:var(--mpp);--fg:var(--ink);--fgi:var(--paper);--sec:#34312d;--acc:var(--ox);--bg:var(--paper);--tint:rgba(10,10,11,.028)}
 section{scroll-margin-top:var(--navh)}
 .s{position:relative;overflow-x:clip}
 .wrap{position:relative;margin:0 var(--g);border-left:1px solid var(--line);border-right:1px solid var(--line);padding:0 var(--pad);height:100%}
@@ -305,7 +305,9 @@ tr.dr td{height:auto;padding:0;border:0}
 .seq .no{font:400 18px/1 var(--serif);font-style:normal;color:var(--mut);margin-left:16px}
 .term{background:none;border:0;margin:0;padding:0 0 2px;font:inherit;color:inherit;cursor:pointer;transition:color .4s var(--ui),background-size .7s var(--ease);background-image:linear-gradient(var(--acc),var(--acc));background-repeat:no-repeat;background-position:0 100%;background-size:0 1px}
 .term.on,.term:hover,.term:focus-visible{color:var(--acc);background-size:100% 1px}
-.mgrid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);column-gap:56px;align-items:start;flex-grow:1;min-height:0}
+.mgrid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);grid-template-rows:auto minmax(0,1fr);column-gap:56px;align-items:start;flex-grow:1;min-height:0}
+.mpin{display:contents}
+.mgrid .seq{grid-column:1 / -1}.mgrid .slist{grid-column:1;grid-row:2}.mgrid .figw{grid-column:2;grid-row:2}
 .slist{display:flex;flex-direction:column;border-top:1px solid var(--line)}
 .stepbox{position:relative;display:grid;grid-template-columns:44px minmax(0,1fr);column-gap:8px;background:none;border:0;border-bottom:1px solid var(--line);padding:14px 0;text-align:left;color:inherit;cursor:pointer;opacity:.45;transition:opacity .6s var(--ui)}
 .stepbox:hover,.stepbox.pv{opacity:.8}
@@ -314,6 +316,7 @@ tr.dr td{height:auto;padding:0;border:0}
 .stepbox .sh3{font:italic 300 26px/1.2 var(--serif);color:var(--fg)}
 .stepbox .sp{grid-column:2;display:grid;grid-template-rows:0fr;font:400 17px/1.55 var(--serif);color:var(--sec);opacity:0;transition:grid-template-rows .8s var(--ease),opacity .35s var(--ui),margin-top .8s var(--ease)}
 .stepbox .sp>span{min-height:0;overflow:hidden}
+.stepbox .nb{white-space:nowrap}
 .stepbox.on .sp{grid-template-rows:1fr;opacity:1;margin-top:8px;transition-delay:0s,.14s,0s}
 .stepbox.on .sn,.stepbox.pv .sn{color:var(--acc)}
 .stepbox::after{content:"";position:absolute;left:0;bottom:-1px;height:1px;width:100%;background:var(--acc);transform:scaleX(0);transform-origin:right;transition:transform .7s var(--ease)}
@@ -432,38 +435,42 @@ h1.pt{font-size:48px}
 .rods{height:320px}
 .mr{grid-template-columns:1fr;row-gap:10px}
 .mr .h:hover{transform:none}
-/* phone: the method locks too. The equation and figure hold still, and one step card at a time takes its place under them */
-.method5 .mwrap{height:440vh}
-.mstick{min-height:0;height:calc(100vh - var(--navh));height:calc(100svh - var(--navh));padding:18px var(--pad) 14px}
-.mhead{flex-direction:column;gap:6px;margin-bottom:0}
-.mlead{text-align:left;font-size:15px;line-height:1.42}
-.seq{font-size:22px;margin:12px 0 10px}
-.seq .no{font-size:14px;margin-left:8px}
-.mgrid{display:flex;flex-direction:column;gap:8px}
-.mgrid>.figw{order:-1}
-.sfig{max-height:34vh;max-height:34svh}
-/* the figure shrinks to the phone's width, so its labels are set larger to stay readable */
-.sfig text{font-size:18px}
-.slist{display:grid}
-.stepbox{grid-area:1/1;opacity:0;transform:translateY(14px);border-bottom:0;padding:10px 0 0;pointer-events:none;transition:opacity .4s var(--ui),transform .8s var(--ease)}
-.stepbox.on{opacity:1;transform:none;pointer-events:auto;transition:opacity .6s var(--ui) .14s,transform 1s var(--ease) .14s}
-.stepbox.pv:not(.on){opacity:0}
-.stepbox::after{display:none}
+/* phone: nothing locks. The equation and Figure 2 hold under the nav while the five steps scroll past them at the reader's own pace;
+   the step crossing the reading line is the one Figure 2 draws, and a hairline under the figure fills as the story advances */
+.method5 .mwrap{height:auto}
+.mstick{position:relative;top:0;height:auto;min-height:0;padding:72px var(--pad) 0}
+.mhead{flex-direction:column;gap:10px;margin-bottom:22px}
+.mlead{text-align:left;font-size:17px;line-height:1.5}
+.mgrid{display:block}
+.mpin{display:block}
+.seq{position:relative;font-size:26px;line-height:1.5;margin:0;padding-right:32px}
+.seq .no{position:absolute;right:0;top:.45em;font-size:14px;margin:0}
+.figw{margin:14px -12px 0}
+.sfig{max-height:none}
+/* the figure scales with the screen, so its labels are sized from that scale (--flab, set by the script) to read at about 11.5 px */
+.sfig text{font-size:var(--flab,20px)}
+.sfig .t-w,.sfig .t-v{font-size:min(var(--flab,20px),18px)}
+.stepbox{grid-template-columns:30px minmax(0,1fr)}
 .stepbox .sh3{font-size:24px}
-.stepbox .sp{grid-template-rows:1fr;opacity:1;margin-top:4px;font-size:16px;line-height:1.5;transition:none}
-.mfoot{margin-top:10px;gap:14px}
-.mfoot .cap{font-size:12px;line-height:1.4}
-/* not locked (a short screen): the plain list */
-.method5 .mwrap.still{height:auto}
-.mwrap.still .mstick{height:auto;padding:64px var(--pad) 24px}
-.mwrap.still .mgrid{gap:24px}
-.mwrap.still .sfig{max-height:none}
-.mwrap.still .slist{display:flex}
-.mwrap.still .stepbox{grid-area:auto;opacity:.45;transform:none;pointer-events:auto;border-bottom:1px solid var(--line);padding:14px 0}
-.mwrap.still .stepbox.on,.mwrap.still .stepbox.pv.on{opacity:1}
-.mwrap.still .stepbox.pv:not(.on){opacity:.8}
+.stepbox .sp{font-size:17px;line-height:1.5}
+.mfoot{margin-top:24px}
+.mfoot .mprog{display:none}
+.mflow .mpin{position:sticky;top:var(--navh);z-index:4;margin:0 calc(-1 * var(--pad));padding:12px var(--pad) 12px;background:var(--paper) var(--grain);background-size:240px 240px}
+.mflow .mpin::before,.mflow .mpin::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--line)}
+.mflow .mpin::after{background:var(--acc);transform-origin:left;transform:scaleX(var(--prog,0))}
+.mflow .figw{margin-top:10px}
+.mflow .sfig{max-height:34vh;max-height:34svh}
+.mflow .slist{display:block;border-top:0;padding-top:var(--mlead,96px)}
+.mflow .stepbox{display:grid;align-content:start;width:100%;min-height:var(--mcard,240px);padding:16px 0 24px;border-bottom:0;border-top:1px solid var(--line);opacity:.3;transition:opacity .5s var(--ui)}
+.mflow .stepbox.on{opacity:1}
+.mflow .stepbox.pv:not(.on){opacity:.3}
+.mflow .stepbox::after{top:-1px;bottom:auto}
+.mflow .stepbox .sp{grid-template-rows:1fr;opacity:1;margin-top:8px;transition:none}
 .mwrap.still .stepbox .sp{grid-template-rows:0fr;opacity:0;margin-top:0}
 .mwrap.still .stepbox.on .sp{grid-template-rows:1fr;opacity:1;margin-top:8px}
+.mwrap.still .slist{margin-top:24px}
+.mwrap.still .mstick{padding-top:72px}
+.mwrap.still .sfig{max-height:72vh}
 .tm{grid-template-columns:1fr;row-gap:6px}
 .hash{grid-template-columns:1fr;row-gap:6px}
 .h3{margin-top:56px}
@@ -473,6 +480,13 @@ h1.pt{font-size:48px}
 .foot .fline{font-size:24px}
 .foot .fsmall{flex-direction:column;gap:6px}
 .pop{max-width:calc(100% - 24px)}
+}
+
+@media (max-width:600px){
+.seq{font-size:20px;line-height:1.65}
+.seq .l1,.seq .l2{display:block}
+.seq .l2{padding-left:2.15em}
+.seq .no{top:.55em}
 }
 
 /* reduced motion: the .rm class follows the OS setting. Every movement becomes a 0.2 s fade or nothing */
@@ -488,6 +502,7 @@ h1.pt{font-size:48px}
 .pt .w>span,.bars i,.rule,.tick,.rl,.nav::after,.mr::before,.mr:last-of-type::after,.tm::after,.chk li::after,.refs li::after{transform:none !important}
 .sfig .pl,.sfig .bk{stroke-dashoffset:0}.sfig text{opacity:1;transform:none}.sfig .dk{transform:none}
 .method5 .mwrap{height:auto}.mstick{position:relative;top:0;height:auto}
+.stepbox{opacity:1}.stepbox .sp{grid-template-rows:1fr;opacity:1;margin-top:8px}
 </style></noscript>
 </head>
 <body>
@@ -583,15 +598,9 @@ h1.pt{font-size:48px}
 <div class="mwrap" id="mwrap">
 <div class="mstick"><div class="inner">
 <div class="mhead rv"><h2 class="h2p">iv. Method</h2><p class="mlead">Resolution risk is an expected loss. Follow one proposal from start to payment; each step adds a term to equation (1).</p></div>
-<p class="seq rv" id="seq">RR = 10⁴ · <button type="button" class="term" data-step="1">P(D)</button> · [ <button type="button" class="term" data-step="2">P(Δ | D) · L</button> + <button type="button" class="term" data-step="3">E[τ | D] · r</button> ]<span class="no">(1)</span></p>
 <div class="mgrid">
-<div class="slist rv" id="slist" role="group" aria-label="Steps of Figure 2">
-<button type="button" class="stepbox" data-step="0"><span class="sn">1</span><span class="sh3">Proposal</span><span class="sp"><span>An outcome is proposed and a bond is posted. The price of the proposed side already sits close to $1.</span></span></button>
-<button type="button" class="stepbox" data-step="1"><span class="sn">2</span><span class="sh3">Dispute window</span><span class="sp"><span>For two hours, anyone can dispute the proposal by posting a bond of their own. P(D) is the chance that someone does.</span></span></button>
-<button type="button" class="stepbox" data-step="2"><span class="sn">3</span><span class="sh3">Dispute</span><span class="sp"><span>A dispute sends the question back for a second proposal, and the price falls as traders weigh a different outcome. P(Δ | D) · L is the loss if the payout does change.</span></span></button>
-<button type="button" class="stepbox" data-step="3"><span class="sn">4</span><span class="sh3">Vote</span><span class="sp"><span>A second dispute goes to a vote of token holders, after 1 to 2 days of public debate. For 3 to 4 days the capital is locked, and E[τ | D] · r is the cost of that wait.</span></span></button>
-<button type="button" class="stepbox" data-step="4"><span class="sn">5</span><span class="sh3">Payment</span><span class="sp"><span>The market pays: in full but late, split 50/50, or to the other side. Resolution risk adds these outcomes up, weighted by how likely each is, before anyone disputes.</span></span></button>
-</div>
+<div class="mpin" id="mpin">
+<p class="seq rv" id="seq"><span class="l1">RR = 10⁴ · <button type="button" class="term" data-step="1">P(D)</button> ·</span> <span class="l2">[ <button type="button" class="term" data-step="2">P(Δ | D) · L</button> + <button type="button" class="term" data-step="3">E[τ | D] · r</button> ]</span><span class="no">(1)</span></p>
 <div class="rv figw"><svg class="sfig" id="sfig" viewBox="0 0 580 400" role="img" aria-label="Illustrative price of the proposed side: steady near 1 during the dispute window, falling after a dispute, drifting during the vote, then paying 1 late or 0">
 <line class="ax" x1="20" y1="50" x2="545" y2="50"></line><line class="ax" x1="20" y1="340" x2="545" y2="340"></line>
 <line class="cur" id="f-cur" x1="20" y1="44" x2="20" y2="346"></line>
@@ -608,6 +617,14 @@ h1.pt{font-size:48px}
 <text class="a t-b2" id="f-tb2" x="486" y="330" text-anchor="end">paid to the other side</text>
 <text class="t-b" id="f-tb" x="486" y="70" text-anchor="end">paid in full, late</text>
 </svg></div>
+</div>
+<div class="slist rv" id="slist" role="group" aria-label="Steps of Figure 2">
+<button type="button" class="stepbox" data-step="0"><span class="sn">1</span><span class="sh3">Proposal</span><span class="sp"><span>An outcome is proposed and a bond is posted. The price of the proposed side already sits close to $1.</span></span></button>
+<button type="button" class="stepbox" data-step="1"><span class="sn">2</span><span class="sh3">Dispute window</span><span class="sp"><span>For two hours, anyone can dispute the proposal by posting a bond of their own. P(D) is the chance that someone does.</span></span></button>
+<button type="button" class="stepbox" data-step="2"><span class="sn">3</span><span class="sh3">Dispute</span><span class="sp"><span>A dispute sends the question back for a second proposal, and the price falls as traders weigh a different outcome. <span class="nb">P(Δ | D) · L</span> is the loss if the payout does change.</span></span></button>
+<button type="button" class="stepbox" data-step="3"><span class="sn">4</span><span class="sh3">Vote</span><span class="sp"><span>A second dispute goes to a vote of token holders, after 1 to 2 days of public debate. For 3 to 4 days the capital is locked, and <span class="nb">E[τ | D] · r</span> is the cost of that wait.</span></span></button>
+<button type="button" class="stepbox" data-step="4"><span class="sn">5</span><span class="sh3">Payment</span><span class="sp"><span>The market pays: in full but late, split 50/50, or to the other side. Resolution risk adds these outcomes up, weighted by how likely each is, before anyone disputes.</span></span></button>
+</div>
 </div>
 <div class="mfoot"><p class="cap"><em>Figure 2.</em> One illustrative market, from proposal to payment. The line is the price of the proposed side. Illustrative, not market data.</p><div class="mprog" aria-hidden="true"><span></span></div></div>
 </div></div>
@@ -726,7 +743,7 @@ var E = {
   svIn: $('sv-inwin'), inwin: $('s-inwin'), svLast: $('sv-last'), last: $('s-last'), lastCell: $('s-lastcell'), hash: $('s-hash'), slive: $('s-live'),
   stmt: $('stmt'), q: $('vq'), tbl: $('tbl1'), tclip: $('tclip'), tbody: $('tbody'), tmsg: $('tmsg'), rowline: $('rowline'), feed: $('t1feed'),
   fig: $('fig1'), rods: $('rods'), fmsg: $('fmsg'), ro: $('ro'), roM: $('ro-m'), roO: $('ro-o'), roS: $('ro-s'), rolive: $('ro-live'),
-  pinwrap: $('mwrap'), slist: $('slist'), seq: $('seq'), sfig: $('sfig'), cur: $('f-cur'),
+  pinwrap: $('mwrap'), mpin: $('mpin'), slist: $('slist'), seq: $('seq'), sfig: $('sfig'), cur: $('f-cur'),
   fDk: $('f-dk'), fTd: $('f-td'), fBkw: $('f-bkw'), fTw: $('f-tw'), fBkv: $('f-bkv'), fTv: $('f-tv'), fTb: $('f-tb'), fTb2: $('f-tb2'),
   mrest: $('mrest'), pop: $('pop'), hashv: $('hashv'), fband: $('fband')
 };
@@ -1361,9 +1378,41 @@ function loadHash() {
 // each step draws exactly its own stretch of the price line, measured on the path: the window opens at x 70, the dispute lands at x 120,
 // the vote starts at x 240 and the vote ends, and payment begins, at x 470. Payment draws no line of its own, only the three ways the market pays
 var FST = [0, .0933, .1865, .5122, 1], FEN = [.0933, .1865, .5122, 1, 1], STORYOFF = [.9067, .8135, .4878, 0, 0];
-var M = { st: -1, ps: null, off: null, prog: null, bof: null, bl: null, pinned: false, hold: 0, stepAt: Date.now(), pv: -1, cx: null, cxs: null };
-var mqPin = mq('(min-width: 901px) and (min-height: 680px), (max-width: 900px) and (min-height: 700px)');
-function syncPin() { M.pinned = !!mqPin.matches; E.pinwrap.classList.toggle('still', !M.pinned); M.ps = null; }
+var M = { st: -1, ps: null, off: null, prog: null, bof: null, bl: null, pinned: false, flow: false, z: 0, hold: 0, stepAt: Date.now(), pv: -1, cx: null, cxs: null };
+// three ways to read it: locked on a desktop, flowing under a held figure on a phone, and a plain list on a screen too short for either
+var mqPin = mq('(min-width: 901px) and (min-height: 680px)'), mqFlow = mq('(max-width: 900px) and (min-height: 500px)');
+// phone: the reading line sits this far down the space left under the held figure
+var RL = .56;
+function syncPin() {
+  M.pinned = !!mqPin.matches; M.flow = !M.pinned && !!mqFlow.matches;
+  E.pinwrap.classList.toggle('still', !M.pinned && !M.flow); E.pinwrap.classList.toggle('mflow', M.flow); M.ps = null; M.z = 0; flowSize();
+}
+// the cards are sized in small-viewport units, so the page never reflows when a phone's toolbar slides away mid-scroll
+function flowSize() {
+  figLabels(); if (!M.flow) return;
+  var z = E.mpin.offsetHeight; if (Math.abs(z - M.z) < 1) return; M.z = z;
+  var w = E.pinwrap, av = '(' + (window.CSS && CSS.supports('height', '100svh') ? '100svh' : '100vh') + ' - ' + (navH() + z) + 'px)';
+  w.style.setProperty('--mcard', 'clamp(160px, calc(' + av + ' * .5), 260px)');
+  w.style.setProperty('--mlead', 'max(24px, calc(' + av + ' * ' + RL + ' - 20px))');
+}
+function figLabels() {
+  if (innerWidth > 900) { E.sfig.style.removeProperty('--flab'); return; }
+  var b = E.sfig.getBoundingClientRect(), k = Math.min(b.width / 580, b.height / 400);
+  if (k > 0) E.sfig.style.setProperty('--flab', clamp(11.5 / k, 12, 24).toFixed(1) + 'px');
+}
+function flowLine() { var nz = navH() + M.z; return nz + (innerHeight - nz) * RL; }
+// how far the story has run: the step whose top has crossed the reading line, and how far it has gone past it
+function flowRaw() {
+  var rw = E.pinwrap.getBoundingClientRect();
+  if (rw.top > innerHeight) return 0;
+  if (rw.bottom < 0) return 1;
+  var R = flowLine(), top = E.steps.map(function (b) { return b.getBoundingClientRect().top; });
+  if (top[0] >= R) return 0;
+  var st = 4; for (var i = 1; i < 5; i++) if (top[i] > R) { st = i - 1; break; }
+  // the last step runs until its top reaches the figure, so the three payouts draw while it is still in view
+  var span = st < 4 ? top[st + 1] - top[st] : R - navH() - M.z - 8;
+  return (st + clamp((R - top[st]) / Math.max(1, span), 0, 1)) / 5;
+}
 function setStep(st) {
   if (st === M.st) return; M.st = st;
   E.steps.forEach(function (b, i) { b.classList.toggle('on', i === st); if (i === st) b.setAttribute('aria-current', 'step'); else b.removeAttribute('aria-current'); });
@@ -1372,10 +1421,12 @@ function setStep(st) {
 }
 function methodScrub(dt, vh, r) {
   var st, off, prog, bo;
-  if (M.pinned) {
-    // progress counts from the moment the frame locks under the nav to the moment it lets go
-    var rp = E.pinwrap.getBoundingClientRect(), nh = navH(), raw = clamp((nh - rp.top) / Math.max(1, rp.height - (vh - nh)), 0, 1);
-    M.ps = r || M.ps == null ? raw : damp(M.ps, raw, 9, dt);
+  if (M.pinned || M.flow) {
+    // locked, progress counts from the moment the frame locks under the nav to the moment it lets go; flowing, it follows the steps
+    var raw;
+    if (M.pinned) { var rp = E.pinwrap.getBoundingClientRect(), nh = navH(); raw = clamp((nh - rp.top) / Math.max(1, rp.height - (vh - nh)), 0, 1); }
+    else raw = flowRaw();
+    M.ps = r || M.ps == null ? raw : damp(M.ps, raw, M.flow ? 12 : 9, dt);
     var p = M.ps; st = Math.min(4, Math.max(0, Math.floor(p * 5 - 1e-9)));
     var loc = clamp(p * 5 - st, 0, 1);
     off = 1 - (FST[st] + (FEN[st] - FST[st]) * loc); prog = p; bo = st >= 4 ? eIO(clamp((loc - .06) / .5, 0, 1)) : 0;
@@ -1395,6 +1446,8 @@ function methodScrub(dt, vh, r) {
 // a step, an equation term or a point on Figure 2: pinned, the page travels to that step; unpinned, the step opens in place
 function goStep(i, fromAway) {
   if (M.pinned) { var pr = E.pinwrap.getBoundingClientRect(), nh = navH(), total = pr.height - (innerHeight - nh); travel(window.scrollY + pr.top - nh + total * (i + .5) / 5); return; }
+  // flowing: the page brings that step up to the reading line, far enough past it that its part of Figure 2 is drawn
+  if (M.flow) { var R = flowLine(), bt = E.steps[i].getBoundingClientRect().top, sp = i < 4 ? E.steps[i + 1].getBoundingClientRect().top - bt : R - navH() - M.z - 8; travel(window.scrollY + bt - R + sp * (i < 4 ? .6 : .9)); return; }
   M.hold = Date.now() + 12000; M.stepAt = Date.now(); setStep(i);
   if (fromAway || !vis(E.slist, -80)) travel($('method').getBoundingClientRect().top + window.scrollY - navH());
 }
@@ -1421,7 +1474,7 @@ E.sfig.addEventListener('pointermove', function (e) { if (e.pointerType !== 'mou
 E.sfig.addEventListener('pointerleave', function () { M.cx = null; M.cxs = null; preview(-1); E.sfig.classList.remove('hov'); });
 E.sfig.addEventListener('click', function (e) { goStep(phaseAt(svgX(e))); });
 setInterval(function () {
-  if (M.pinned || rm() || doc.hidden) return;
+  if (M.pinned || M.flow || rm() || doc.hidden) return;
   if (!vis(E.slist, 0)) { M.stepAt = Date.now(); return; }
   if (Date.now() < M.hold) return;
   if (Date.now() - M.stepAt >= (M.st === 4 ? 7000 : 3800)) { setStep((M.st + 1) % 5); M.stepAt = Date.now(); }
@@ -1453,23 +1506,10 @@ function scrub(dt) {
   methodScrub(dt, vh, r);
   if (toc !== S.toc) { S.toc = toc; setActive(toc); if (!S.navHover) navTo(navActive()); }
 }
-// on a phone, when a swipe comes to rest between two steps, the page glides to the nearest one, so each swipe locks onto a step
-var SN = { t: 0, touch: false };
-window.addEventListener('touchstart', function () { SN.touch = true; }, { passive: true });
-window.addEventListener('touchend', function () { SN.touch = false; SN.t = performance.now(); }, { passive: true });
-window.addEventListener('scroll', function () { SN.t = performance.now(); }, { passive: true });
-function settle() {
-  if (!M.pinned || innerWidth > 900 || rm()) return;
-  var pr = E.pinwrap.getBoundingClientRect(), nh = navH(), total = pr.height - (innerHeight - nh), p = (nh - pr.top) / total;
-  if (p <= .01 || p >= .99) return;
-  var f = (clamp(Math.floor(p * 5), 0, 4) + .5) / 5, dy = (f - p) * total;
-  if (Math.abs(dy) > 18) travel(window.scrollY + dy);
-}
 function frame(t) {
   if (!S.run) return;
   var dt = Math.min(.05, Math.max(0, (t - S.lt) / 1000)); S.lt = t;
-  if (S.tr) { var tr = S.tr, k = clamp((t - tr.t0) / tr.dur, 0, 1); window.scrollTo(0, tr.y0 + tr.dy * eIO(k)); if (k >= 1) { S.tr = null; SN.t = 0; if (tr.done) tr.done(); } }
-  else if (SN.t && !SN.touch && t - SN.t > 170) { SN.t = 0; settle(); }
+  if (S.tr) { var tr = S.tr, k = clamp((t - tr.t0) / tr.dur, 0, 1); window.scrollTo(0, tr.y0 + tr.dy * eIO(k)); if (k >= 1) { S.tr = null; if (tr.done) tr.done(); } }
   var y = window.scrollY;
   if (S.sy != null) { var add = Math.abs(y - S.sy) * .004; if (add) S.boost = Math.max(S.boost, Math.min(1.6, S.boost + add)); }
   S.sy = y; S.boost *= Math.exp(-2.6 * dt);
@@ -1491,10 +1531,10 @@ splitStmt();
 if (!CONFIG.FEED_MONTH) E.feed.remove(); else E.feed.textContent = ' From ' + CONFIG.FEED_MONTH + ', each row carries its resolution risk.';
 syncPin(); listen(mqPin, syncPin);
 reveal(); sizeAll(); loadHash();
-if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(function () { requestAnimationFrame(function () { start(); sizeAll(); lines(); }); });
+if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(function () { requestAnimationFrame(function () { start(); sizeAll(); lines(); M.z = 0; flowSize(); }); });
 setTimeout(start, 900);
 var rz = 0;
-window.addEventListener('resize', function () { clearTimeout(rz); rz = setTimeout(function () { sizeAll(); lines(); if (!S.navHover) navTo(navActive(), true); linkRow(); }, 120); });
+window.addEventListener('resize', function () { clearTimeout(rz); rz = setTimeout(function () { sizeAll(); lines(); flowSize(); if (!S.navHover) navTo(navActive(), true); linkRow(); }, 120); });
 setInterval(second, 1000);
 setInterval(drip, 3000);
 doc.addEventListener('visibilitychange', function () {
