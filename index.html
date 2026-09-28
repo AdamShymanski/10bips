@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>10bips | Quantifying event contracts</title>
-<meta name="description" content="10bips prices resolution risk to make prediction markets bankable: the chance an outcome is disputed, the payout changes, or it pays late, in basis points.">
+<meta name="description" content="10bips measures resolution risk on Polymarket: how often a proposed outcome is disputed, what a dispute does to price and payout, and how long payment waits.">
 <meta name="author" content="Adam Szymański">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="application-name" content="10bips">
@@ -19,34 +19,34 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://10bips.com/">
 <meta property="og:title" content="10bips | Quantifying event contracts">
-<meta property="og:description" content="10bips prices resolution risk to make prediction markets bankable: the chance an outcome is disputed, the payout changes, or it pays late, in basis points.">
-<meta property="og:image" content="https://10bips.com/og-banner-1200x630.png?v=2">
-<meta property="og:image:secure_url" content="https://10bips.com/og-banner-1200x630.png?v=2">
+<meta property="og:description" content="10bips measures resolution risk on Polymarket: how often a proposed outcome is disputed, what a dispute does to price and payout, and how long payment waits.">
+<meta property="og:image" content="https://10bips.com/og-banner-1200x630.png?v=3">
+<meta property="og:image:secure_url" content="https://10bips.com/og-banner-1200x630.png?v=3">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="10bips research note: Quantifying event contracts. We price resolution risk to make prediction markets bankable.">
+<meta property="og:image:alt" content="10bips research note: Between the outcome and the payout. We measure resolution risk on Polymarket and forecast it in public.">
 
 <!-- X / Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="10bips | Quantifying event contracts">
-<meta name="twitter:description" content="10bips prices resolution risk to make prediction markets bankable: the chance an outcome is disputed, the payout changes, or it pays late, in basis points.">
-<meta name="twitter:image" content="https://10bips.com/twitter-card-1200x675.png?v=2">
-<meta name="twitter:image:alt" content="10bips research note: Quantifying event contracts. We price resolution risk to make prediction markets bankable.">
+<meta name="twitter:description" content="10bips measures resolution risk on Polymarket: how often a proposed outcome is disputed, what a dispute does to price and payout, and how long payment waits.">
+<meta name="twitter:image" content="https://10bips.com/twitter-card-1200x675.png?v=3">
+<meta name="twitter:image:alt" content="10bips research note: Between the outcome and the payout. We measure resolution risk on Polymarket and forecast it in public.">
 <meta name="twitter:site" content="@tenbips">
 <meta name="twitter:creator" content="@tenbips">
 
 <!-- icons: inline SVG for modern browsers, files for everything else -->
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23f4f1ea'/%3E%3Cg fill='%230a0a0b'%3E%3Crect x='4' y='14' width='2' height='15'/%3E%3Crect x='9' y='14' width='2' height='15'/%3E%3Crect x='14' y='14' width='2' height='15'/%3E%3Crect x='19' y='14' width='2' height='15'/%3E%3C/g%3E%3Crect x='24' y='3' width='3' height='26' fill='%238C2319'/%3E%3C/svg%3E" type="image/svg+xml">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2">
-<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png?v=2">
-<link rel="shortcut icon" href="/favicon.ico?v=2">
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png?v=2">
-<link rel="mask-icon" href="/safari-pinned-tab.svg?v=2" color="#8C2319">
-<link rel="manifest" href="/site.webmanifest?v=2">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=3">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=3">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png?v=3">
+<link rel="shortcut icon" href="/favicon.ico?v=3">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180x180.png?v=3">
+<link rel="mask-icon" href="/safari-pinned-tab.svg?v=3" color="#8C2319">
+<link rel="manifest" href="/site.webmanifest?v=3">
 <meta name="msapplication-TileColor" content="#f4f1ea">
-<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=2">
+<meta name="msapplication-TileImage" content="/mstile-150x150.png?v=3">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -71,7 +71,7 @@
         "height": 512
       },
       "image": "https://10bips.com/og-banner-1200x630.png",
-      "description": "10bips prices resolution risk to make prediction markets bankable: the chance an outcome is disputed, the payout changes, or it pays late, in basis points.",
+      "description": "10bips measures resolution risk on Polymarket: how often a proposed outcome is disputed, what a dispute does to price and payout, and how long payment waits.",
       "slogan": "Quantifying event contracts",
       "email": "contact@10bips.com",
       "sameAs": ["https://x.com/tenbips"],
@@ -531,10 +531,10 @@ h1.pt{font-size:48px}
 <div class="ha">
 <div>
 <div class="kick hi" style="--dl:.15s">Research note · September 2026</div>
-<h1 class="pt" id="h1"><span class="w"><span>Quantifying</span></span> <span class="w"><span>event</span></span> <span class="w"><span>contracts</span></span></h1>
-<p class="subt hi" style="--dl:.62s">We price resolution risk to make prediction markets bankable</p>
+<h1 class="pt" id="h1"><span class="w"><span>Between</span></span> <span class="w"><span>the</span></span> <span class="w"><span>outcome</span></span> <span class="w"><span>and</span></span> <span class="w"><span>the</span></span> <span class="w"><span>payout</span></span></h1>
+<p class="subt hi" style="--dl:.62s">We measure resolution risk on Polymarket and forecast it in public</p>
 <p class="auth hi" style="--dl:.72s">10bips team, imagined in Poland</p>
-<p class="abs hi" style="--dl:.82s"><em>Abstract.</em> Before a prediction market pays, someone has to report what happened, and that report can be disputed, reversed or paid late. No one prices this resolution risk today, so a position is hardest to value, and to lend against, in the hours before it pays. We estimate it for every outcome proposed on Polymarket, at the moment it is proposed, and quote it in basis points of notional. Each day's estimates are frozen with a public hash before the outcomes are known, so anyone can check the record.</p>
+<p class="abs hi" style="--dl:.82s"><em>Abstract.</em> Before a Polymarket market pays, a whitelisted proposer reports what happened, and anyone can dispute the report. Disputes are rare, but when one lands the payout often changes, and a dispute that goes to a vote holds payment for days. We measure each of these steps from public on-chain data, publish what we find, and test our forecasts in the open, misses included.</p>
 <div class="acts hi" style="--dl:.94s"><a class="pill out" href="#method">Read the method <span class="arw dn" aria-hidden="true">↓</span></a><a class="pill fill" href="mailto:contact@10bips.com?subject=10bips">Get in touch <span class="arw ne" aria-hidden="true">↗</span></a></div>
 </div>
 <canvas id="pin" class="pin" aria-hidden="true"></canvas>
@@ -552,9 +552,9 @@ h1.pt{font-size:48px}
 <span class="rule"></span><span class="tick"></span>
 <div class="wrap"><div class="wide">
 <div class="sh rv"><h2 class="h2p">i. The problem</h2></div>
-<p class="stmt rv" id="stmt">Every event contract pays 1 or 0 once someone decides what happened. That decision can be disputed, reversed or paid late. <em>10bips puts a price on it</em>, per proposal, the moment it lands.</p>
-<div class="duo"><p class="para rv">Near its end, a winning position is the safest asset in the market: the outcome is public and the price sits close to $1. It is also the one point where a single dispute can send it to zero, or lock the capital for days while the dispute is settled. The price shows neither risk.</p>
-<p class="para rv">This now has a cost. Venues and lenders are adding margin and credit to prediction markets, and a lender has to value a position exactly when it nears settlement. Without a price for resolution risk, the safe answer is to stop lending as settlement approaches, so capital that could be working waits until the market pays. When a large market is disputed in public, the cost is trust in every other market too.</p></div>
+<p class="stmt rv" id="stmt">An event contract pays only once someone decides what happened. That decision can be disputed, reversed or paid late. <em>10bips measures that risk</em>, proposal by proposal, from public data.</p>
+<div class="duo"><p class="para rv">Near its end, a winning position is the safest asset in the market: the outcome is public and the price sits close to $1. It is also the one point where a single dispute can send it to zero, or lock the capital for days while the dispute is settled. The price near $1 mixes these risks with time value, fees and spread, and cannot separate them.</p>
+<p class="para rv">This now has a cost. Venues and lenders are adding margin and credit to prediction markets, and a lender has to value a position exactly when it nears settlement. Without a price for resolution risk, the safe answer is to stop lending as settlement approaches, so capital that could be working waits until the market pays.</p></div>
 </div></div>
 </section>
 
@@ -562,7 +562,7 @@ h1.pt{font-size:48px}
 <span class="rule"></span><span class="tick"></span>
 <div class="wrap"><div class="wide">
 <div class="sh rv"><h2 class="h2p">ii. Resolution, live</h2></div>
-<div class="col rv" style="margin-left:0"><p class="para">A Polymarket market resolves in three steps. Someone proposes the outcome. A two-hour window opens in which anyone can dispute it by posting a bond. If no one does, the market settles. Table 1 shows these steps as they happen, read from public on-chain data.</p></div>
+<div class="col rv" style="margin-left:0"><p class="para">A Polymarket market resolves in three steps. A whitelisted proposer reports the outcome and posts a bond. A dispute window opens, from ten minutes on fast sports and crypto markets to two hours on the rest, in which anyone can dispute by posting a bond of their own. If no one does, the market settles. Table 1 shows these steps as they happen, read from public on-chain data.</p></div>
 <div class="ctl rv">
 <label class="sr" for="vq">Search market or address</label>
 <div class="qw"><input id="vq" class="q" type="search" placeholder="Search market or address" autocomplete="off" spellcheck="false"></div>
@@ -579,7 +579,7 @@ h1.pt{font-size:48px}
 <p class="empty" id="tmsg" hidden></p>
 </div>
 <div class="rl bot"></div>
-<p class="cap t1cap flagable" id="t1cap"><em>Table 1.</em> Proposals, disputes and settlements in the last 6 h. Politics and conflict markets are not shown.<span id="t1feed"> From October, each row carries its resolution risk.</span></p>
+<p class="cap t1cap flagable" id="t1cap"><em>Table 1.</em> Proposals, disputes and settlements in the last 6 h.<span id="t1feed"> From October, each row carries its resolution risk.</span></p>
 </div>
 <div class="f1 rv" id="fig1">
 <div class="figbox">
@@ -588,7 +588,7 @@ h1.pt{font-size:48px}
 <div class="ro" id="ro" aria-hidden="true"><div class="m" id="ro-m"></div><div class="d">proposed <b id="ro-o"></b> · <span id="ro-s"></span></div></div>
 </div>
 <p class="sr" id="ro-live" aria-live="polite"></p>
-<p class="cap flagable" id="f1cap"><em>Figure 1.</em> Every proposal now inside its dispute window, newest at the top. The bead marks how much of the two hours has passed. A line turns oxblood when the proposal is disputed.</p>
+<p class="cap flagable" id="f1cap"><em>Figure 1.</em> A steady sample of the proposals now inside their dispute window, newest at the top. The bead marks how much of each window has passed. A line turns oxblood when the proposal is disputed.</p>
 </div>
 </div></div>
 </section>
@@ -597,8 +597,8 @@ h1.pt{font-size:48px}
 <span class="rule"></span><span class="tick"></span>
 <div class="wrap"><div class="wide">
 <div class="sh rv"><h2 class="h2p">iii. What we measure</h2></div>
-<div style="margin-top:40px"><div class="mr"><a class="h" href="#method" data-step="1">P(dispute)</a><p class="x">The probability that a proposal is disputed within its two-hour window. Estimated when the proposal is made, from information public at that moment.</p></div>
-<div class="mr"><a class="h" href="#method" data-step="4">Resolution risk</a><p class="x">The expected loss to a holder of the proposed outcome, in basis points of notional: the probability of a dispute multiplied by what a dispute costs. The cost has two parts, the chance that the payout changes and the capital locked while the dispute is settled.</p></div>
+<div style="margin-top:40px"><div class="mr"><a class="h" href="#method" data-step="1">P(dispute)</a><p class="x">The probability that a proposal is disputed before its window closes. Estimated when the proposal is made, from information public at that moment.</p></div>
+<div class="mr"><a class="h" href="#method" data-step="4">Resolution risk</a><p class="x">The expected loss to a holder of the proposed outcome, in basis points of notional: the probability of a dispute times its cost, which is a possible change in payout plus the wait until it is paid.</p></div>
 <div class="mr"><a class="h" href="#t-haircut">Haircut</a><p class="x">The discount a lender should apply to a position before it settles. Resolution risk is an average; the haircut is set by the bad cases, how far a position can fall when a dispute goes wrong.</p></div></div>
 </div></div>
 </section>
@@ -630,8 +630,8 @@ h1.pt{font-size:48px}
 </div>
 <div class="slist rv" id="slist" role="group" aria-label="Steps of Figure 2">
 <button type="button" class="stepbox" data-step="0"><span class="sn">1</span><span class="sh3">Proposal</span><span class="sp"><span>An outcome is proposed and a bond is posted. The price of the proposed side already sits close to $1.</span></span></button>
-<button type="button" class="stepbox" data-step="1"><span class="sn">2</span><span class="sh3">Dispute window</span><span class="sp"><span>For two hours, anyone can dispute the proposal by posting a bond of their own. P(D) is the chance that someone does.</span></span></button>
-<button type="button" class="stepbox" data-step="2"><span class="sn">3</span><span class="sh3">Dispute</span><span class="sp"><span>A dispute sends the question back for a second proposal, and the price falls as traders weigh a different outcome. <span class="nb">P(Δ | D) · L</span> is the loss if the payout does change.</span></span></button>
+<button type="button" class="stepbox" data-step="1"><span class="sn">2</span><span class="sh3">Dispute window</span><span class="sp"><span>Until the window closes, anyone can dispute the proposal by posting a bond of their own. P(D) is the chance that someone does.</span></span></button>
+<button type="button" class="stepbox" data-step="2"><span class="sn">3</span><span class="sh3">Dispute</span><span class="sp"><span>A dispute sends the question back for a second proposal, and the price can fall as traders weigh a different outcome. <span class="nb">P(Δ | D) · L</span> is the loss if the payout does change.</span></span></button>
 <button type="button" class="stepbox" data-step="3"><span class="sn">4</span><span class="sh3">Vote</span><span class="sp"><span>A second dispute goes to a vote of token holders, after 1 to 2 days of public debate. For 3 to 4 days the capital is locked, and <span class="nb">E[τ | D] · r</span> is the cost of that wait.</span></span></button>
 <button type="button" class="stepbox" data-step="4"><span class="sn">5</span><span class="sh3">Payment</span><span class="sp"><span>The market pays: in full but late, split 50/50, or to the other side. Resolution risk adds these outcomes up, weighted by how likely each is, before anyone disputes.</span></span></button>
 </div>
@@ -641,21 +641,21 @@ h1.pt{font-size:48px}
 </div>
 <div class="mrest" id="mrest"><div class="col">
 <p class="para" style="margin-top:40px"><em>D</em> is a dispute and <em>Δ</em> a change in payout. <em>L</em> is the loss per $1 if the payout changes. <em>τ</em> is the time from dispute to settlement, and <em>r</em> the yearly cost of the capital locked during it. The factor 10⁴ turns the result into basis points.</p>
-<p class="para">Polymarket resolves markets through UMA's optimistic oracle, in stages that are easy to mistake for a single event <a class="cite" href="#ref1">[1]</a>. A proposer posts a bond and an outcome. If the two-hour window passes without a dispute, the outcome is final. A first dispute sends the question back for a new proposal and a new window. A second dispute goes to a vote of UMA token holders, which follows 1 to 2 days of public debate <a class="cite" href="#ref5">[5]</a> and returns one of four answers: the proposer was right, the disputer was right, the question was asked too early, or the payout is split 50/50. Every path after a dispute changes what the market pays, when it pays, or both.</p>
+<p class="para">Polymarket resolves markets through UMA's optimistic oracle, in stages that are easy to mistake for a single event <a class="cite" href="#ref1">[1]</a>. Since September 2025 only whitelisted addresses can propose <a class="cite" href="#ref6">[6]</a>. A proposer posts a bond and an outcome. If the window closes without a dispute, the outcome is final. A first dispute sends the question back for a new proposal and a new window. A second dispute goes to a vote of UMA token holders, which follows 1 to 2 days of public debate <a class="cite" href="#ref5">[5]</a> and returns one of four answers: the proposer was right, the disputer was right, the question was asked too early, or the payout is split 50/50. Every path after a dispute changes what the market pays, when it pays, or both.</p>
 <h3 class="h3">Estimating each term</h3>
 <div class="terms">
-<div class="tm"><span class="sym">P(D)</span><p class="x">A statistical model trained on every past proposal and whether it was disputed. It uses only what is public when the proposal is made: who proposed it and how their earlier proposals ended, how soon after the question opened the proposal came, how the proposed outcome compares with the last market price, and the type of market. The wording of the rules is a weak signal on its own <a class="cite" href="#ref4">[4]</a>, which is why the model leans on who proposes and when. Its probabilities are calibrated, so proposals scored at 1% are disputed about 1% of the time.</p></div>
+<div class="tm"><span class="sym">P(D)</span><p class="x">A statistical model trained on past proposals and whether they were disputed. It uses only what is public when the proposal is made: how often the proposer's earlier proposals were disputed and how many they have made, how soon after the question reached the oracle the proposal came, and what was proposed. An LLM reading the rules barely beats a coin at predicting disputes <a class="cite" href="#ref4">[4]</a>, which is why the model leans on who proposes and when.</p></div>
 <div class="tm"><span class="sym">P(Δ | D)</span><p class="x">The share of past disputes, by type of market, in which the final payout differed from the first proposal.</p></div>
-<div class="tm"><span class="sym">L</span><p class="x">1 for someone who holds to settlement: the proposed side pays nothing if the payout changes. For a lender, the gap between the collateral value and what the position finally pays.</p></div>
+<div class="tm"><span class="sym">L</span><p class="x">For a holder to payment: $1 per share if the other side wins, $0.50 if the market splits 50/50. For a lender, the gap between the collateral value and what the position finally pays.</p></div>
 <div class="tm"><span class="sym">E[τ | D]</span><p class="x">The expected time from dispute to settlement, measured on past disputes along each path in <a class="xref" href="#method" data-step="2">Figure 2, steps 3 to 5</a>.</p></div>
 <div class="tm"><span class="sym">r</span><p class="x">The cost of locked capital, set by whoever uses the number; 5% a year by default. Markets already discount near-certain contracts for this lock-up <a class="cite" href="#ref2">[2]</a>.</p></div>
-<div class="tm" id="t-haircut"><span class="sym">Haircut</span><p class="x">Not an average. Taken from the distribution of how far the proposed side fell after past disputes, by price level and position size, at a high percentile.</p></div>
+<div class="tm" id="t-haircut"><span class="sym">Haircut</span><p class="x">Not an average. Taken from the distribution of how far the proposed side fell after past disputes, by price level, market size and risk score, at a high percentile.</p></div>
 </div>
 <h3 class="h3">How it is checked</h3>
 <ol class="chk">
 <li><span class="i">1</span><span><em>Out of time.</em> The model is trained on older proposals and tested only on newer ones it has never seen, the way it is used live.</span></li>
 <li><span class="i">2</span><span><em>On the rare cases.</em> Disputes are rare, so a model that always answers "unlikely" looks accurate and is useless. We judge it by how many real disputes fall among the proposals it ranks as riskiest.</span></li>
-<li><span class="i">3</span><span><em>Frozen daily.</em> Each day's estimates are written to a file, and the file's SHA-256 hash is published before the outcomes are known. Anyone can later confirm that no estimate was changed.</span></li>
+<li><span class="i">3</span><span><em>Frozen daily.</em> Each day's forecasts are written to a file, and its SHA-256 hash is published when the day closes, so no forecast can be changed afterwards.</span></li>
 <li><span class="i">4</span><span><em>Misses included.</em> Every dispute is compared with the number published before it, and misses are published in the same format as hits.</span></li>
 </ol>
 <h3 class="h3">Limits</h3>
@@ -667,9 +667,10 @@ h1.pt{font-size:48px}
 <ol class="refs">
 <li id="ref1">[1] M. Nechepurenko (2026). Resolution Is Not Settlement, Part I: Oracle Adjudication and Semantic Governance on Polymarket. arXiv:2609.15368.</li>
 <li id="ref2">[2] J. Gebele, F. Matthes (2026). When Certainty Is Not Worth It: Capital Lock-Up and Settlement Discounting in Prediction Markets. arXiv:2605.31431.</li>
-<li id="ref3">[3] G. Wang (2026). Do prediction markets price events or adjudication? Evidence from the disputed Polymarket markets. Economics Letters.</li>
+<li id="ref3">[3] G. Wang (2026). Do prediction markets price events or adjudication? Evidence from the disputed Polymarket markets. Economics Letters 268.</li>
 <li id="ref4">[4] J. Wen, J. Zhou, J. Huang (2026). Can LLMs Help Decentralized Dispute Arbitration? A Case Study of UMA-Resolved Markets on Polymarket. arXiv:2604.15674.</li>
 <li id="ref5">[5] Polymarket documentation. Resolution. docs.polymarket.com/concepts/resolution.</li>
+<li id="ref6">[6] UMA (2025). Managed Proposers Update. blog.uma.xyz/articles/managed-proposers-update.</li>
 </ol>
 <div class="hash" id="hash"><span class="lab">Latest forecast hash</span><span class="hv" id="hashv">The first forecast hash is published on 8 Oct.</span></div>
 <p class="close">Full model notes on request: <a href="mailto:contact@10bips.com?subject=Model%20notes">contact@10bips.com</a></p>
@@ -689,7 +690,7 @@ h1.pt{font-size:48px}
 <div class="fcol rv"><span class="lab">Contact</span><a href="mailto:contact@10bips.com?subject=10bips">contact@10bips.com</a><a href="https://x.com/tenbips">X @tenbips</a><span>Warsaw, Poland</span></div>
 <nav class="fcol rv" aria-label="Sections"><span class="lab">Sections</span><a href="#why">Problem</a><a href="#stream">Live</a><a href="#meas">Measure</a><a href="#method">Method</a></nav>
 </div>
-<div class="fsmall"><span>Research, not investment advice. 10bips may hold positions in markets it scores.</span><span>© 2026 10bips</span></div>
+<div class="fsmall"><span>Research, not investment advice. 10bips holds no positions and does not propose or dispute outcomes.</span><span>© 2026 10bips</span></div>
 </div>
 </div>
 </footer>
@@ -715,8 +716,6 @@ var ADAPTERS = [
   '0x2f5e3684cb1f318ec51b00edba38d79ac2c0aa9d', '0x6a9d222616c90fca5754cd1333cfd9b7fb6a4f74', '0x157ce2d672854c848c9b79c49a8cc6cc89176a49',
   '0x65070be91477460d8a7aeeb94ef92fe056c2f2a7', '0x69c47de9d4d3dad79590d61b9e05918e03775f24'
 ];
-// display filter only: politics and conflict markets are not shown (they still count in the strip)
-var BLOCK = /\b(war|invade|invasion|missile|airstrike|strike on|attack|killed|ceasefire|military|troops|nuclear|hostage|terror|election|elected|nominee|primary|president|prime minister|senate|congress|governor|mayor|parliament|referendum|impeach|trump|biden|harris|putin|zelensky|netanyahu|khamenei|xi jinping)\b/i;
 var SPAN = CONFIG.windowHours * 3600e3, AXIS = 7200e3, ROWS = 8, EASE = 'cubic-bezier(.19,1,.22,1)';
 var KL = { P: 'proposed', D: 'disputed', S: 'settled' };
 var MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -943,12 +942,12 @@ function parseTitle(hex) {
 function ingest(x, ev) {
   if (!x || !x.id) return null;
   var r = REQ.get(x.id);
-  if (!r) { r = { id: x.id, u: hash01(x.id), pT: 0, eT: 0, dT: 0, sT: 0, hasT: false, title: null, hide: false, out: null, proposer: '' }; REQ.set(x.id, r); }
+  if (!r) { r = { id: x.id, u: hash01(x.id), pT: 0, eT: 0, dT: 0, sT: 0, hasT: false, title: null, out: null, proposer: '' }; REQ.set(x.id, r); }
   if (x.proposer) r.proposer = String(x.proposer).toLowerCase();
   if (x.proposedPrice != null) r.out = outcome(x.proposedPrice);
   r.pT = ms(x.proposalTimestamp) || r.pT; r.eT = ms(x.proposalExpirationTimestamp) || r.eT;
   r.dT = ms(x.disputeTimestamp) || r.dT; r.sT = ms(x.settlementTimestamp) || r.sT;
-  if ('ancillaryData' in x) { r.title = parseTitle(x.ancillaryData); r.hide = !!(r.title && BLOCK.test(r.title)); r.hasT = true; }
+  if ('ancillaryData' in x) { r.title = parseTitle(x.ancillaryData); r.hasT = true; }
   if (r.dT) DISP.add(r.id);
   if (ev) {
     D.maxP = Math.max(D.maxP, r.pT); D.maxS = Math.max(D.maxS, r.sT); D.maxD = Math.max(D.maxD, r.dT);
@@ -1075,7 +1074,7 @@ var TPL_DET = '<td><div class="detw"><div class="detc"><div class="det"><div><di
 var mqPhone = mq('(max-width: 900px)');
 function COLS() { return mqPhone.matches ? 3 : 6; }
 listen(mqPhone, function () { T.rows.forEach(function (o) { o.dr.cells[0].colSpan = COLS(); }); });
-function rowOk(e) { return !!e.r.out && !e.r.hide; }
+function rowOk(e) { return !!e.r.out; }
 function matchQ(e, q) { return (e.r.title || 'untitled market').toLowerCase().indexOf(q) >= 0 || (e.r.proposer || '').indexOf(q) >= 0; }
 function held() { return T.hover || !!T.q || T.open !== null; }
 function listNow() {
@@ -1247,7 +1246,7 @@ function figUpdate() {
     if (!live && !disp) return;
     if (!(r.u < thr || disp || r.id === FIG.pin || r.id === FIG.link)) return;
     if (!r.hasT) { D.needT.add(r.id); return; }
-    if (!r.hide) cand.push(r);
+    cand.push(r);
   }
   if (!D.down) { WIN.forEach(function (id) { consider(REQ.get(id)); }); DISP.forEach(function (id) { consider(REQ.get(id)); }); if (FIG.link) consider(REQ.get(FIG.link)); }
   cand.sort(function (a, b) { return b.pT - a.pT || (a.id < b.id ? -1 : 1); });
