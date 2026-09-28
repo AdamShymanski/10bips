@@ -435,8 +435,9 @@ h1.pt{font-size:48px}
 .rods{height:320px}
 .mr{grid-template-columns:1fr;row-gap:10px}
 .mr .h:hover{transform:none}
-/* phone: nothing locks. The equation and Figure 2 hold under the nav while the five steps scroll past them at the reader's own pace;
-   the step crossing the reading line is the one Figure 2 draws, and a hairline under the figure fills as the story advances */
+/* phone: the method locks too. The heading slides away under the nav, then the frame holds the equation and Figure 2 still,
+   with one explanation at a time in a window under them. Each stretch of scroll brings the next explanation up from the bottom
+   of that window, and Figure 2 draws its part while it is read. A hairline on top of the window fills as the scroll runs */
 .method5 .mwrap{height:auto}
 .mstick{position:relative;top:0;height:auto;min-height:0;padding:72px var(--pad) 0}
 .mhead{flex-direction:column;gap:10px;margin-bottom:22px}
@@ -455,17 +456,26 @@ h1.pt{font-size:48px}
 .stepbox .sp{font-size:17px;line-height:1.5}
 .mfoot{margin-top:24px}
 .mfoot .mprog{display:none}
-.mflow .mpin{position:sticky;top:var(--navh);z-index:4;margin:0 calc(-1 * var(--pad));padding:12px var(--pad) 12px;background:var(--paper) var(--grain);background-size:240px 240px}
-.mflow .mpin::before,.mflow .mpin::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--line)}
-.mflow .mpin::after{background:var(--acc);transform-origin:left;transform:scaleX(var(--prog,0))}
-.mflow .figw{margin-top:10px}
-.mflow .sfig{max-height:34vh;max-height:34svh}
-.mflow .slist{display:block;border-top:0;padding-top:var(--mlead,96px)}
-.mflow .stepbox{display:grid;align-content:start;width:100%;min-height:var(--mcard,240px);padding:16px 0 24px;border-bottom:0;border-top:1px solid var(--line);opacity:.3;transition:opacity .5s var(--ui)}
-.mflow .stepbox.on{opacity:1}
-.mflow .stepbox.pv:not(.on){opacity:.3}
-.mflow .stepbox::after{top:-1px;bottom:auto}
-.mflow .stepbox .sp{grid-template-rows:1fr;opacity:1;margin-top:8px;transition:none}
+.method5 .mwrap.mlock{height:calc(250vh + 100vh - var(--navh) + var(--mh,0px));height:calc(250svh + 100svh - var(--navh) + var(--mh,0px))}
+.mlock .mstick{position:sticky;top:calc(var(--navh) - var(--mh,0px));height:calc(100vh - var(--navh) + var(--mh,0px));height:calc(100svh - var(--navh) + var(--mh,0px));padding-bottom:14px}
+.mlock .mgrid{display:flex;flex-direction:column;align-items:stretch;flex-grow:1;min-height:0}
+.mlock .figw{margin-top:8px}
+.mlock .sfig{max-height:34vh;max-height:34svh}
+.mlock .slist{position:relative;flex-grow:1;min-height:0;margin-top:12px;border-top:0;overflow:hidden}
+.mlock .slist::before,.mlock .slist::after{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:var(--line);z-index:1}
+.mlock .slist::after{background:var(--acc);transform-origin:left;transform:scaleX(var(--prog,0))}
+.mlock .stepbox{position:absolute;left:0;right:0;top:0;padding:16px 0 0;border:0;opacity:0;pointer-events:none;transition:none;will-change:transform,opacity}
+.mlock .stepbox.on{pointer-events:auto}
+.mlock .stepbox::after{display:none}
+.mlock .stepbox .sp{grid-template-rows:1fr;opacity:1;margin-top:6px;transition:none}
+.mlock .mfoot{margin-top:6px}
+.mlock .mfoot .cap{font-size:12px;line-height:1.4}
+/* a short phone: smaller type and figure, so the longest explanation still fits its window */
+.mtight .sfig{max-height:29vh;max-height:29svh}
+.mtight .stepbox{padding-top:12px}
+.mtight .stepbox .sh3{font-size:21px}
+.mtight .stepbox .sp{font-size:15px;line-height:1.45}
+.mtight .mfoot .cap{font-size:11px}
 .mwrap.still .stepbox .sp{grid-template-rows:0fr;opacity:0;margin-top:0}
 .mwrap.still .stepbox.on .sp{grid-template-rows:1fr;opacity:1;margin-top:8px}
 .mwrap.still .slist{margin-top:24px}
@@ -1378,40 +1388,46 @@ function loadHash() {
 // each step draws exactly its own stretch of the price line, measured on the path: the window opens at x 70, the dispute lands at x 120,
 // the vote starts at x 240 and the vote ends, and payment begins, at x 470. Payment draws no line of its own, only the three ways the market pays
 var FST = [0, .0933, .1865, .5122, 1], FEN = [.0933, .1865, .5122, 1, 1], STORYOFF = [.9067, .8135, .4878, 0, 0];
-var M = { st: -1, ps: null, off: null, prog: null, bof: null, bl: null, pinned: false, flow: false, z: 0, hold: 0, stepAt: Date.now(), pv: -1, cx: null, cxs: null };
-// three ways to read it: locked on a desktop, flowing under a held figure on a phone, and a plain list on a screen too short for either
-var mqPin = mq('(min-width: 901px) and (min-height: 680px)'), mqFlow = mq('(max-width: 900px) and (min-height: 500px)');
-// phone: the reading line sits this far down the space left under the held figure
-var RL = .56;
+var M = { st: -1, ps: null, off: null, prog: null, bof: null, bl: null, pinned: false, lock: false, mh: 0, H: 0, q: null, hold: 0, stepAt: Date.now(), pv: -1, cx: null, cxs: null };
+// three ways to read it: locked on a desktop, locked around a window of explanations on a phone, and a plain list on a screen too short for either
+var mqPin = mq('(min-width: 901px) and (min-height: 680px)'), mqLock = mq('(max-width: 900px) and (min-height: 500px)');
+E.mstick = E.pinwrap.querySelector('.mstick');
 function syncPin() {
-  M.pinned = !!mqPin.matches; M.flow = !M.pinned && !!mqFlow.matches;
-  E.pinwrap.classList.toggle('still', !M.pinned && !M.flow); E.pinwrap.classList.toggle('mflow', M.flow); M.ps = null; M.z = 0; flowSize();
-}
-// the cards are sized in small-viewport units, so the page never reflows when a phone's toolbar slides away mid-scroll
-function flowSize() {
-  figLabels(); if (!M.flow) return;
-  var z = E.mpin.offsetHeight; if (Math.abs(z - M.z) < 1) return; M.z = z;
-  var w = E.pinwrap, av = '(' + (window.CSS && CSS.supports('height', '100svh') ? '100svh' : '100vh') + ' - ' + (navH() + z) + 'px)';
-  w.style.setProperty('--mcard', 'clamp(160px, calc(' + av + ' * .5), 260px)');
-  w.style.setProperty('--mlead', 'max(24px, calc(' + av + ' * ' + RL + ' - 20px))');
+  M.pinned = !!mqPin.matches; M.lock = !M.pinned && !!mqLock.matches;
+  E.pinwrap.classList.toggle('still', !M.pinned && !M.lock); E.pinwrap.classList.toggle('mlock', M.lock);
+  if (!M.lock) E.steps.forEach(function (b) { b.style.transform = ''; b.style.opacity = ''; b._y = b._o = null; });
+  M.ps = null; M.q = null; lockSize();
 }
 function figLabels() {
   if (innerWidth > 900) { E.sfig.style.removeProperty('--flab'); return; }
   var b = E.sfig.getBoundingClientRect(), k = Math.min(b.width / 580, b.height / 400);
   if (k > 0) E.sfig.style.setProperty('--flab', clamp(11.5 / k, 12, 24).toFixed(1) + 'px');
 }
-function flowLine() { var nz = navH() + M.z; return nz + (innerHeight - nz) * RL; }
-// how far the story has run: the step whose top has crossed the reading line, and how far it has gone past it
-function flowRaw() {
-  var rw = E.pinwrap.getBoundingClientRect();
-  if (rw.top > innerHeight) return 0;
-  if (rw.bottom < 0) return 1;
-  var R = flowLine(), top = E.steps.map(function (b) { return b.getBoundingClientRect().top; });
-  if (top[0] >= R) return 0;
-  var st = 4; for (var i = 1; i < 5; i++) if (top[i] > R) { st = i - 1; break; }
-  // the last step runs until its top reaches the figure, so the three payouts draw while it is still in view
-  var span = st < 4 ? top[st + 1] - top[st] : R - navH() - M.z - 8;
-  return (st + clamp((R - top[st]) / Math.max(1, span), 0, 1)) / 5;
+// phone: the part of the frame above the equation (the heading) hides under the nav once it locks, and the window takes what is left
+// and Figure 2 grows as large as it can while the longest explanation still fits under it
+function lockSize() {
+  var w = E.pinwrap; w.classList.remove('mtight'); E.sfig.style.maxHeight = '';
+  if (M.lock) {
+    M.mh = Math.max(0, Math.round(E.mpin.getBoundingClientRect().top - E.mstick.getBoundingClientRect().top - 12));
+    w.style.setProperty('--mh', M.mh + 'px');
+    var fit = function () {
+      var tall = Math.max.apply(null, E.steps.map(function (b) { return b.offsetHeight; })) + 12, fh = E.sfig.getBoundingClientRect().height;
+      E.sfig.style.maxHeight = Math.round(clamp(fh + E.slist.clientHeight - tall, 150, E.sfig.clientWidth * 400 / 580)) + 'px';
+      return E.slist.clientHeight >= tall - 12;
+    };
+    if (!fit()) { w.classList.add('mtight'); fit(); }
+    M.H = E.slist.clientHeight; E.steps.forEach(function (b) { b._y = null; });
+  }
+  figLabels();
+}
+// the explanation for the current step sits in the window; the next waits one window below it and rises into place, the last leaves upward
+function lockCards() {
+  var H = M.H || E.slist.clientHeight;
+  E.steps.forEach(function (b, i) {
+    var d = i - M.q, y = (d * H).toFixed(1), o = clamp(1 - Math.abs(d) * 1.6, 0, 1).toFixed(3);
+    if (b._y !== y) { b._y = y; b.style.transform = 'translate3d(0,' + y + 'px,0)'; }
+    if (b._o !== o) { b._o = o; b.style.opacity = o; }
+  });
 }
 function setStep(st) {
   if (st === M.st) return; M.st = st;
@@ -1421,21 +1437,27 @@ function setStep(st) {
 }
 function methodScrub(dt, vh, r) {
   var st, off, prog, bo;
-  if (M.pinned || M.flow) {
-    // locked, progress counts from the moment the frame locks under the nav to the moment it lets go; flowing, it follows the steps
-    var raw;
-    if (M.pinned) { var rp = E.pinwrap.getBoundingClientRect(), nh = navH(); raw = clamp((nh - rp.top) / Math.max(1, rp.height - (vh - nh)), 0, 1); }
-    else raw = flowRaw();
-    M.ps = r || M.ps == null ? raw : damp(M.ps, raw, M.flow ? 12 : 9, dt);
+  if (M.pinned) {
+    // progress counts from the moment the frame locks under the nav to the moment it lets go
+    var rp = E.pinwrap.getBoundingClientRect(), nh = navH(), raw = clamp((nh - rp.top) / Math.max(1, rp.height - (vh - nh)), 0, 1);
+    M.ps = r || M.ps == null ? raw : damp(M.ps, raw, 9, dt);
     var p = M.ps; st = Math.min(4, Math.max(0, Math.floor(p * 5 - 1e-9)));
     var loc = clamp(p * 5 - st, 0, 1);
     off = 1 - (FST[st] + (FEN[st] - FST[st]) * loc); prog = p; bo = st >= 4 ? eIO(clamp((loc - .06) / .5, 0, 1)) : 0;
     setStep(st);
   } else {
-    st = M.st < 0 ? 0 : M.st; setStep(st);
+    if (M.lock) {
+      // phone: the scroll picks the step, a fifth of the locked run each; the explanation and the figure then move on their own clock
+      var rq = E.pinwrap.getBoundingClientRect(), x = 5 * clamp((navH() - M.mh - rq.top) / Math.max(1, rq.height - E.mstick.offsetHeight), 0, 1), t = Math.min(4, Math.floor(x));
+      st = M.st < 0 ? t : M.st;
+      // a small dead band at each step line, so a thumb resting on it does not flip the step back and forth
+      if (t !== st && (Math.abs(x - Math.round(x)) > .04 || Math.abs(t - st) > 1)) st = t;
+      setStep(st);
+      M.q = M.q == null || r ? st : damp(M.q, st, 7, dt); lockCards();
+    } else { st = M.st < 0 ? 0 : M.st; setStep(st); }
     var k = r ? 1e3 : 4.5;
     M.off = M.off == null ? STORYOFF[st] : damp(M.off, STORYOFF[st], k, dt); off = M.off;
-    M.prog = M.prog == null ? (st + 1) / 5 : damp(M.prog, (st + 1) / 5, k, dt); prog = M.prog;
+    M.prog = M.prog == null ? (st + 1) / 5 : damp(M.prog, (st + 1) / 5, k, dt); prog = M.lock ? x / 5 : M.prog;
     // the payout branches wait until the line has reached the payment point
     M.bof = damp(M.bof == null ? 0 : M.bof, st >= 4 && M.off < .004 ? 1 : 0, k, dt); bo = M.bof;
   }
@@ -1446,8 +1468,7 @@ function methodScrub(dt, vh, r) {
 // a step, an equation term or a point on Figure 2: pinned, the page travels to that step; unpinned, the step opens in place
 function goStep(i, fromAway) {
   if (M.pinned) { var pr = E.pinwrap.getBoundingClientRect(), nh = navH(), total = pr.height - (innerHeight - nh); travel(window.scrollY + pr.top - nh + total * (i + .5) / 5); return; }
-  // flowing: the page brings that step up to the reading line, far enough past it that its part of Figure 2 is drawn
-  if (M.flow) { var R = flowLine(), bt = E.steps[i].getBoundingClientRect().top, sp = i < 4 ? E.steps[i + 1].getBoundingClientRect().top - bt : R - navH() - M.z - 8; travel(window.scrollY + bt - R + sp * (i < 4 ? .6 : .9)); return; }
+  if (M.lock) { var lr = E.pinwrap.getBoundingClientRect(); travel(window.scrollY + lr.top - (navH() - M.mh) + (lr.height - E.mstick.offsetHeight) * (i + .5) / 5); return; }
   M.hold = Date.now() + 12000; M.stepAt = Date.now(); setStep(i);
   if (fromAway || !vis(E.slist, -80)) travel($('method').getBoundingClientRect().top + window.scrollY - navH());
 }
@@ -1474,7 +1495,7 @@ E.sfig.addEventListener('pointermove', function (e) { if (e.pointerType !== 'mou
 E.sfig.addEventListener('pointerleave', function () { M.cx = null; M.cxs = null; preview(-1); E.sfig.classList.remove('hov'); });
 E.sfig.addEventListener('click', function (e) { goStep(phaseAt(svgX(e))); });
 setInterval(function () {
-  if (M.pinned || M.flow || rm() || doc.hidden) return;
+  if (M.pinned || M.lock || rm() || doc.hidden) return;
   if (!vis(E.slist, 0)) { M.stepAt = Date.now(); return; }
   if (Date.now() < M.hold) return;
   if (Date.now() - M.stepAt >= (M.st === 4 ? 7000 : 3800)) { setStep((M.st + 1) % 5); M.stepAt = Date.now(); }
@@ -1531,10 +1552,10 @@ splitStmt();
 if (!CONFIG.FEED_MONTH) E.feed.remove(); else E.feed.textContent = ' From ' + CONFIG.FEED_MONTH + ', each row carries its resolution risk.';
 syncPin(); listen(mqPin, syncPin);
 reveal(); sizeAll(); loadHash();
-if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(function () { requestAnimationFrame(function () { start(); sizeAll(); lines(); M.z = 0; flowSize(); }); });
+if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(function () { requestAnimationFrame(function () { start(); sizeAll(); lines(); lockSize(); }); });
 setTimeout(start, 900);
 var rz = 0;
-window.addEventListener('resize', function () { clearTimeout(rz); rz = setTimeout(function () { sizeAll(); lines(); flowSize(); if (!S.navHover) navTo(navActive(), true); linkRow(); }, 120); });
+window.addEventListener('resize', function () { clearTimeout(rz); rz = setTimeout(function () { sizeAll(); lines(); lockSize(); if (!S.navHover) navTo(navActive(), true); linkRow(); }, 120); });
 setInterval(second, 1000);
 setInterval(drip, 3000);
 doc.addEventListener('visibilitychange', function () {
