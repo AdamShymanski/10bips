@@ -534,7 +534,7 @@ h1.pt{font-size:48px}
 <h1 class="pt" id="h1"><span class="w"><span>Between</span></span> <span class="w"><span>the</span></span> <span class="w"><span>outcome</span></span> <span class="w"><span>and</span></span> <span class="w"><span>the</span></span> <span class="w"><span>payout</span></span></h1>
 <p class="subt hi" style="--dl:.62s">We measure resolution risk on Polymarket and forecast it in public</p>
 <p class="auth hi" style="--dl:.72s">10bips team, imagined in Poland</p>
-<p class="abs hi" style="--dl:.82s"><em>Abstract.</em> Before a Polymarket market pays, a whitelisted proposer reports what happened, and anyone can dispute the report. Disputes are rare, but when one lands the payout often changes, and a dispute that goes to a vote holds payment for days. We measure each of these steps from public on-chain data, publish what we find, and test our forecasts in the open, misses included.</p>
+<p class="abs hi" style="--dl:.82s"><em>Abstract.</em> Before a Polymarket market pays, a whitelisted proposer reports what happened, and anyone can dispute the report. Disputes are rare per proposal, yet their number more than doubled in the past year, and more of them now land on markets that settle within minutes. When one lands, the payout often changes, and a dispute that goes to a vote holds payment for days. We measure each of these steps from public on-chain data, publish what we find, and test our forecasts in the open, misses included.</p>
 <div class="acts hi" style="--dl:.94s"><a class="pill out" href="#method">Read the method <span class="arw dn" aria-hidden="true">↓</span></a><a class="pill fill" href="mailto:contact@10bips.com?subject=10bips">Get in touch <span class="arw ne" aria-hidden="true">↗</span></a></div>
 </div>
 <canvas id="pin" class="pin" aria-hidden="true"></canvas>
@@ -553,7 +553,7 @@ h1.pt{font-size:48px}
 <div class="wrap"><div class="wide">
 <div class="sh rv"><h2 class="h2p">i. The problem</h2></div>
 <p class="stmt rv" id="stmt">An event contract pays only once someone decides what happened. That decision can be disputed, reversed or paid late. <em>10bips measures that risk</em>, proposal by proposal, from public data.</p>
-<div class="duo"><p class="para rv">Near its end, a winning position is the safest asset in the market: the outcome is public and the price sits close to $1. It is also the one point where a single dispute can send it to zero, or lock the capital for days while the dispute is settled. The price near $1 mixes these risks with time value, fees and spread, and cannot separate them.</p>
+<div class="duo"><p class="para rv">Near its end, a winning position is the safest asset in the market: the outcome is public and the price sits close to $1. What is left is settlement, and it is a growing problem. Polymarket lists far more markets than a year ago, most proposals now come from a handful of automated proposers, and many markets give only minutes to dispute. Disputes are rarer per proposal, but there are more than twice as many, and one can knock the price down and hold the payment for days. The price near $1 mixes this risk with time value, fees and spread, and cannot separate it.</p>
 <p class="para rv">This now has a cost. Venues and lenders are adding margin and credit to prediction markets, and a lender has to value a position exactly when it nears settlement. Without a price for resolution risk, the safe answer is to stop lending as settlement approaches, so capital that could be working waits until the market pays.</p></div>
 </div></div>
 </section>
