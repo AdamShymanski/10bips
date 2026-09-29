@@ -2,7 +2,7 @@
   "id": "/",
   "name": "10bips",
   "short_name": "10bips",
-  "description": "10bips prices resolution risk to make prediction markets bankable.",
+  "description": "10bips measures resolution risk on Polymarket and forecasts it in public.",
   "lang": "en",
   "start_url": "/",
   "scope": "/",
